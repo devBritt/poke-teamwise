@@ -1,12 +1,12 @@
-const router = require("express").router
+const router = require("express").Router;
 
-app.router ('/', (req, res) => {
+router.get ('/', (req, res) => {
     if(req.session.loggedIn)
     res.redirect('/dashboard')
     else res.sendFile('homepage.html', {root:path.join(__dirname, 'public')})
 })
 
-app.router('/dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
     if (req.session.loggedIn) {
         res.setHeader('Content-Type', 'text/html')
         res.write ('Welcome ' + req.session.username+' to your dashboard')
@@ -16,11 +16,11 @@ app.router('/dashboard', (req, res) => {
     else res.redirect('/login')
 })
 
-app.router ('/login', (req, res) => {
+router.get ('/login', (req, res) => {
     res.sendFile('login.html',{root:path.join(__dirname,'public')})
 })
 
-app.router('/authenticate'
+router.post('/authenticate'
 ,bodyParser.urlencoded()
 ,(req,res,next) => {
     if (req.body.username == 'foo'&&req.body.password=='bar') 
