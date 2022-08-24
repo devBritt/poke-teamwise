@@ -21,7 +21,6 @@ router.get ('/login', (req, res) => {
 })
 
 router.post('/authenticate'
-,bodyParser.urlencoded()
 ,(req,res,next) => {
     if (req.body.username == 'foo'&&req.body.password=='bar') 
     {
