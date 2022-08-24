@@ -20,13 +20,14 @@ Favorites.init(
     },
     Poke_id: {
       type: DataTypes.INTEGER,
+      allowNull: false
     },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "post",
+    modelName: "favorites",
   }
 );
 
