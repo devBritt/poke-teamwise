@@ -1,22 +1,12 @@
-const express = require('express')
-const session = require('express-session')
-const bodyParser = require('body-parser')
-const path = require('path')
+const router = require("express").router
 
-const app = express ();
-const port = 3001;
-
-app.use(session({secret:'Keep it secret'
-,name:'uniqueSessionID'
-,saveUninitialized: false}))
-
-app.get ('/', (req, res) => {
+app.router ('/', (req, res) => {
     if(req.session.loggedIn)
     res.redirect('/dashboard')
     else res.sendFile('homepage.html', {root:path.join(__dirname, 'public')})
 })
 
-app.get('/dashboard', (req, res) => {
+app.router('/dashboard', (req, res) => {
     if (req.session.loggedIn) {
         res.setHeader('Content-Type', 'text/html')
         res.write ('Welcome ' + req.session.username+' to your dashboard')
@@ -26,11 +16,11 @@ app.get('/dashboard', (req, res) => {
     else res.redirect('/login')
 })
 
-app.get ('/login', (req, res) => {
+app.router ('/login', (req, res) => {
     res.sendFile('login.html',{root:path.join(__dirname,'public')})
 })
 
-app.post('/authenticate'
+app.router('/authenticate'
 ,bodyParser.urlencoded()
 ,(req,res,next) => {
     if (req.body.username == 'foo'&&req.body.password=='bar') 
@@ -45,4 +35,4 @@ app.post('/authenticate'
         res.send ('Thank you!')
     })
 
-app.listen(port, () => {console.log('Website is running')})
+    module.exports = router;
