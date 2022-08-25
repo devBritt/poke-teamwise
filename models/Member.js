@@ -17,7 +17,8 @@ Member.init(
             references: {
                 model: Team,
                 key: 'id'
-            }
+            },
+            onDelete: 'cascade'
         },
         pokemon_id: {
             type: DataTypes.INTEGER,

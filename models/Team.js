@@ -17,7 +17,8 @@ Team.init(
             references: {
                 model: User,
                 key: 'id'
-            }
+            },
+            onDelete: 'cascade'
         },
         team_name: {
             type: DataTypes.STRING,
