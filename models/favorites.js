@@ -17,6 +17,7 @@ Favorites.init(
         model: "user",
         key: "id",
       },
+      onDelete: 'cascade'
     },
     Poke_id: {
       type: DataTypes.INTEGER,
