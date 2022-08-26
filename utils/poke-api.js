@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { filter } = require('lodash');
 // use for generator filters
 const intersection = require('lodash/intersection');
 // list of Pokémon games
@@ -7,19 +6,60 @@ const games = require('./poke-games');
 // base pokedex URL
 const baseDexUrl = 'https://pokeapi.co/api/v2/pokedex/'
 
-// get pokemon stats by name
+// POKEMON STATS
+// get pokemon details by name
 async function getPokeDetails(pokemon) {
-    const stats = {};
+    const pokemonDetails = {};
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`);
+
+    // get evolution chain for pokemon
+    pokemonDetails.evolution_chain = await getPokeEvoChain(response.data);
     
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
-    
-    stats.hp = response.data.stats[0].base_stat;
-    stats.attack = response.data.stats[1].base_stat;
-    stats.defense = response.data.stats[2].base_stat;
-    stats.special_att = response.data.stats[3].base_stat;
-    stats.special_def = response.data.stats[4].base_stat;
-    stats.speed = response.data.stats[5].base_stat;
-    console.log(stats);
+    pokemonDetails.flavor_text = response.data.flavor_text_entries[
+        response.data.flavor_text_entries.length - 1
+    ].flavor_text;
+    pokemonDetails.is_legendary = response.data.is_legendary;
+    pokemonDetails.is_mythical = response.data.is_mythical;
+    // TODO: add function to get a pokemon's official art
+    // TODO: add function to get a pokemon's stats
+
+    // console.log(response.data);
+    console.log(pokemonDetails);
+}
+
+// get pokemon evolution chain
+async function getPokeEvoChain(evoDetails) {
+    const evoChain = [];
+
+    // check for evolutions
+    if (evoDetails.evolution_chain) {
+        // get evolution chain details
+        const response = await axios.get(evoDetails.evolution_chain.url);
+        const chain = response.data.chain;
+
+        // add base species
+        evoChain.push(chain.species.name);
+
+        // add second and third evolutions with possible differences (wurple -> silcoon -> beautifly OR wurmple -> cascoon -> beautifly)
+        for (let i = 0; i < chain.evolves_to.length; i++) {
+            const pokemon = chain.evolves_to[i];
+            // add second evolution
+            evoChain.push(pokemon.species.name);
+            // add third evolution
+            for (let j = 0; j < pokemon.evolves_to.length; j++) {
+                const pokemon2 = pokemon.evolves_to[j];
+                evoChain.push(pokemon2.species.name);
+            }
+        };
+
+        return evoChain;
+    } else if (evoDetails.evolves_from_species) {
+        pokemonDetails.evolution_chain = [evoDetails.name, evoDetails.evolves_from_species.name];
+        return evoChain;
+    } else {
+        evoChain.push(evoDetails.name);
+        return evoChain;
+    }
 }
 
 // POKEMON LISTS
@@ -139,3 +179,5 @@ async function getAllTypes() {
 
     console.log(typeNames);
 }
+
+getPokeDetails('wurmple');
