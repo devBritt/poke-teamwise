@@ -1,6 +1,6 @@
 const axios = require('axios');
 // use for generator filters
-const _ = require('lodash/intersection');
+const intersection = require('lodash/intersection');
 // list of Pokémon games
 const games = require('./poke-games');
 // base pokedex URL
@@ -22,7 +22,7 @@ async function getDexEntries(dexId) {
     const response = await axios.get(baseDexUrl + dexId);
 
     response.data.pokemon_entries.map(element => {
-        dexArr.push(element);
+        dexArr.push(element.pokemon_species.name);
     });
 
     return dexArr;
@@ -34,7 +34,7 @@ async function getPokeByType(type) {
     const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
     
     response.data.pokemon.map(element => {
-        pokeByTypeArr.push(element.pokemon);
+        pokeByTypeArr.push(element.pokemon.name);
     });
 
     return pokeByTypeArr;
@@ -49,17 +49,22 @@ async function getPokeByMove(move) {
     const response = await axios.get(`https://pokeapi.co/api/v2/move/${move}`);
 
     response.data.learned_by_pokemon.map(element => {
-        pokeByMoveArr.push(element);
+        pokeByMoveArr.push(element.name);
     });
 
     return pokeByMoveArr;
 }
 
 // TODO: get Pokémon by type and move
-async function getPokeFiltered(game, type, move) {
-    const games = await getPokedex();
-    const typeResponse = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
-    const moveResponse = await axios.get(`https://pokeapi.co/api/v2/move/${move}`);
+async function getPokeFiltered(dexId, type, move) {
+    const dexResponse = await getDexEntries(dexId);
+    const typeResponse = await getPokeByType(type);
+    const moveResponse = await getPokeByMove(move);
 
-
+    const filteredResults = intersection(dexResponse, typeResponse, moveResponse);
+    console.log(filteredResults);
 }
+
+getPokeFiltered(games[games.length - 1].dexId[0], 'dragon', 'iron-tail');
+// getDexEntries(games[games.length - 1].dexId[0]);
+// console.log(games[games.length - 1].dexId[0]);
