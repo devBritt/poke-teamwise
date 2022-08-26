@@ -7,11 +7,19 @@ const games = require('./poke-games');
 // base pokedex URL
 const baseDexUrl = 'https://pokeapi.co/api/v2/pokedex/'
 
-// TODO: get list of Pokémon stats
+// get pokemon stats by name
 async function getPokeDetails(pokemon) {
+    const stats = {};
+
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
 
-    console.log(response.data.stats);
+    stats.hp = response.data.stats[0].base_stat;
+    stats.attack = response.data.stats[1].base_stat;
+    stats.defense = response.data.stats[2].base_stat;
+    stats.special_att = response.data.stats[3].base_stat;
+    stats.special_def = response.data.stats[4].base_stat;
+    stats.speed = response.data.stats[5].base_stat;
+    console.log(stats);
 }
 
 // get list of all pokemon from chosen game (by pokedex id)
@@ -88,3 +96,4 @@ async function getPokeFiltered(dexId, type, move) {
     }
 }
 
+getPokeDetails('trubbish');
