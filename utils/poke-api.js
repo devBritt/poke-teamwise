@@ -1,19 +1,14 @@
 const axios = require('axios');
-
-// TODO: get list of all games
-async function getGames() {
-    const response = await axios.get(`https://pokeapi.co/api/v2/version/`);
-
-    // response.data.results.map(element => {
-    //     console.log(element.name);
-    // });
-
-    console.log(response.data);
-}
+// use for generator filters
+const _ = require('lodash/intersection');
+// list of Pokémon games
+const games = require('./poke-games');
+// base pokedex URL
+const baseDexUrl = 'https://pokeapi.co/api/v2/pokedex/'
 
 // TODO: get list of all Pokémon based on selected game
-async function getPokedex(gameId) {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokedex/${gameId}`);
+async function getDexEntries(dexId) {
+    const response = await axios.get(baseDexUrl + dexId);
 
     console.log(response.data);
 }
@@ -48,7 +43,7 @@ async function getPokeFiltered(game, type, move) {
 
 }
 
-getGames();
+getDexEntries(games[games.length - 1].dexId);
 // getPokedex(3);
 // getPokeDetails('trubbish');
 // getPokeByType('fire');
