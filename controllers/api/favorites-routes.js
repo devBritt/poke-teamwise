@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Favorites, User, Teams } = require('../../models'); 
 
 router.get('/', (req, res) => {
-
+    
 });
 
 router.get('/:id', (req, res) => {

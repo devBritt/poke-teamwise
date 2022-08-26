@@ -21,7 +21,7 @@ router.post("/login", (req, res) => {
         .json({ message: "There is no user found with that email address!" });
       return;
     }
-    
+
     const validPassword = dbUserData.checkPassword(req.body.password);
     if (!validPassword) {
       res.status(404).json({ message: "Incorrect password!" });
@@ -53,7 +53,26 @@ router.post("/logout", (req, res) => {
 //TODO ⬇️
 router.put("/:id", (req, res) => {});
 
-//TODO ⬇️
-router.delete("/:id", (req, res) => {});
+//route to delete single user
+router.delete("/:id", (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res
+          .status(404)
+          .json({ message: "There was no user found by this id!" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
