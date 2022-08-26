@@ -10,9 +10,9 @@ const baseDexUrl = 'https://pokeapi.co/api/v2/pokedex/'
 // get pokemon stats by name
 async function getPokeDetails(pokemon) {
     const stats = {};
-
+    
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
-
+    
     stats.hp = response.data.stats[0].base_stat;
     stats.attack = response.data.stats[1].base_stat;
     stats.defense = response.data.stats[2].base_stat;
@@ -22,6 +22,7 @@ async function getPokeDetails(pokemon) {
     console.log(stats);
 }
 
+// POKEMON LISTS
 // get list of all pokemon from chosen game (by pokedex id)
 async function getDexEntries(dexId) {
     // array to store pokemon_entries as objects
@@ -96,4 +97,45 @@ async function getPokeFiltered(dexId, type, move) {
     }
 }
 
-getPokeDetails('trubbish');
+// OTHER LISTS
+// get list of all move names
+async function getAllMoves() {
+    // array to store move names
+    const moveNames = [];
+
+    const response = await axios.get('https://pokeapi.co/api/v2/move?limit=1000');
+
+    response.data.results.map(element => {
+        moveNames.push(element.name);
+    });
+
+    return moveNames;
+}
+
+// get list of moves by type
+async function getMovesByType(type) {
+    // array to store move names
+    const moveNames = [];
+
+    const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
+
+    response.data.moves.map(element => {
+        moveNames.push(element.name);
+    });
+
+    return moveNames;
+}
+
+// get list of all types
+async function getAllTypes() {
+    // array to store type names
+    const typeNames = [];
+
+    const response = await axios.get('https://pokeapi.co/api/v2/type?limit=30');
+
+    response.data.results.map(element => {
+        typeNames.push(element.name);
+    });
+
+    console.log(typeNames);
+}
