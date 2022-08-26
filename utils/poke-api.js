@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { filter } = require('lodash');
 // use for generator filters
 const intersection = require('lodash/intersection');
 // list of Pokémon games
@@ -55,16 +56,35 @@ async function getPokeByMove(move) {
     return pokeByMoveArr;
 }
 
-// TODO: get Pokémon by type and move
+// filter list of pokemon by chosen options
 async function getPokeFiltered(dexId, type, move) {
     const dexResponse = await getDexEntries(dexId);
-    const typeResponse = await getPokeByType(type);
-    const moveResponse = await getPokeByMove(move);
+    let typeResponse;
+    let moveResponse;
 
-    const filteredResults = intersection(dexResponse, typeResponse, moveResponse);
-    console.log(filteredResults);
+    // check for type and move requests
+    if (type && move) {
+        typeResponse = await getPokeByType(type);
+        moveResponse = await getPokeByMove(move);
+
+        const filteredResults = intersection(dexResponse, typeResponse, moveResponse);
+        
+        console.log(filteredResults);
+        return;
+    } else if (type) {
+        typeResponse = await getPokeByType(type);
+
+        const filteredResults = intersection(dexResponse, typeResponse);
+        
+        console.log(filteredResults);
+        return;
+    } else if (move) {
+        moveResponse = await getPokeByMove(move);
+
+        const filteredResults = intersection(dexResponse, moveResponse);
+
+        console.log(filteredResults);
+        return;
+    }
 }
 
-getPokeFiltered(games[games.length - 1].dexId[0], 'dragon', 'iron-tail');
-// getDexEntries(games[games.length - 1].dexId[0]);
-// console.log(games[games.length - 1].dexId[0]);
