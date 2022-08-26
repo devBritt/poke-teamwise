@@ -12,19 +12,21 @@ async function getPokeDetails(pokemon) {
     const pokemonDetails = {};
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`);
 
-    // get evolution chain for pokemon
+    // get pokemon evolution chain
     pokemonDetails.evolution_chain = await getPokeEvoChain(response.data);
-    
+    // get pokemon flavor text
     pokemonDetails.flavor_text = response.data.flavor_text_entries[
         response.data.flavor_text_entries.length - 1
     ].flavor_text;
+    // get pokemon legendary/mythical status
     pokemonDetails.is_legendary = response.data.is_legendary;
     pokemonDetails.is_mythical = response.data.is_mythical;
-    // TODO: add function to get a pokemon's official art
-    // TODO: add function to get a pokemon's stats
+    // get pokemon's official art
+    pokemonDetails.art = await getPokeArt(pokemon);
+    // get pokemon's stats
+    pokemonDetails.stats = await getPokeStats(pokemon);
 
-    // console.log(response.data);
-    console.log(pokemonDetails);
+    return pokemonDetails;
 }
 
 // get pokemon evolution chain
@@ -60,6 +62,28 @@ async function getPokeEvoChain(evoDetails) {
         evoChain.push(evoDetails.name);
         return evoChain;
     }
+}
+
+// get pokemon official art
+async function getPokeArt(pokemon) {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    
+    return response.data.sprites.other['official-artwork'].front_default;
+}
+
+// get pokemon stats
+async function getPokeStats(pokemon) {
+    const stats = {};
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+
+    stats.hp = response.data.stats[0].base_stat;
+    stats.attack = response.data.stats[1].base_stat;
+    stats.defense = response.data.stats[2].base_stat;
+    stats.specAtt = response.data.stats[3].base_stat;
+    stats.specDef = response.data.stats[4].base_stat;
+    stats.speed = response.data.stats[5].base_stat;
+
+    return stats;
 }
 
 // POKEMON LISTS
@@ -179,5 +203,3 @@ async function getAllTypes() {
 
     console.log(typeNames);
 }
-
-getPokeDetails('wurmple');
