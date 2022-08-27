@@ -122,12 +122,46 @@ router.post('/', async (req, res) => {
 
 // PUT update team by id
 router.put('/:id', (req, res) => {
+    Team.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbTeamData => {
+        if (!dbTeamData) {
+            console.log('No team found with this id!');
+            res.status(404).json({ message: 'No team found with this id!' });
+            return;
+        }
 
+        res.json(dbTeamData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ message: err });
+    });
 });
 
 // DELETE team by id
 router.delete('/:id', (req, res) => {
+    Team.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbTeamData => {
+        if (!dbTeamData) {
+            console.log('No team found with this id!');
+            res.status(404).json({ message: 'No team found with this id!' });
+            return;
+        }
 
+        res.json(dbTeamData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ message: err });
+    });
 });
 
 
