@@ -19,8 +19,8 @@ Favorites.init(
       },
       onDelete: 'cascade'
     },
-    Poke_id: {
-      type: DataTypes.INTEGER,
+    pokemon_name: {
+      type: DataTypes.STRING,
       allowNull: false
     },
   },

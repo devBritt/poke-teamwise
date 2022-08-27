@@ -1,6 +1,13 @@
 async function logout(event) {
-    event.preventDefault();
+    const response = await fetch ("/api/user/logout", {
+        method: "post",
+    });
 
+    if(response.ok) {
+        document.location.replace("/");
+    } else {
+        alert(response.statusText);
+    }
 };
 
-document.querySelector("").addEventListener("click", logout);
+document.querySelector("#logout").addEventListener("click", logout);
