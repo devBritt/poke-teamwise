@@ -1,6 +1,5 @@
 async function logout(event) {
-    event.preventDefault();
-
+    const response = await fetch ()
 };
 
 document.querySelector("").addEventListener("click", logout);
