@@ -20,8 +20,8 @@ Member.init(
             },
             onDelete: 'cascade'
         },
-        pokemon_id: {
-            type: DataTypes.INTEGER,
+        pokemon_name: {
+            type: DataTypes.STRING,
             allowNull: false
         }
     },
