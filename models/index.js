@@ -5,9 +5,13 @@ const User = require('./User');
 
 // user associations
 // user has many favorite
-User.hasMany(Favorites);
+User.hasMany(Favorites, {
+    foreignKey: 'user_id'
+});
 // user has many team
-User.hasMany(Team);
+User.hasMany(Team, {
+    foreignKey: 'user_id'
+});
 
 // favorites associations
 // favorites belong to user
@@ -17,7 +21,9 @@ Favorites.belongsTo(User);
 // team belongs to user
 Team.belongsTo(User);
 // team has many member
-Team.hasMany(Member);
+Team.hasMany(Member, {
+    foreignKey: 'team_id'
+});
 
 // member associations
 // member belongs to team
