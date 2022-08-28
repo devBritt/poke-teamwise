@@ -15,7 +15,6 @@
     --light-gray-hex: #C0C0C0;
 
     /* font sizes */
-    --xxxl-font: 64px;
     --xxl-font: 48px;
     --xl-font: 40px;
     --l-font: 36px;
@@ -33,10 +32,34 @@
     /* border radiuses */
     --card-border-radius: 10px;
     --tile-border-radius: 5px;
-}
+
+    /* padding/margin base amount (use calc(var(--spacing)*x) to change size */
+    --spacing: 10px;
+}   
 
 * {
     box-sizing: border-box;
     margin: 0;
+}
+body {
     font-family: 'Anek Telugu', sans-serif;
+    font-weight: var(--regular-weight);
+}
+
+/* main template styles */
+.navbar {
+    background-color: var(--primary-red-hex);
+    padding-left: calc(var(--spacing)*2);
+    padding-right: calc(var(--spacing)*2);
+}
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: var(--m-font);
+}
+.nav-link:hover {
+    color: var(--light-gray-hex);
+}
+#nav-title {
+    font-size: var(--xl-font);
 }
