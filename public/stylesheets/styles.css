@@ -1,0 +1,42 @@
+:root {
+    /* colors */
+    --primary-red-hex: #F5413D;
+    --light-red-hex: #F7716E;
+    --dark-red-hex: #DA100B;
+    --primary-blue-hex: #1672EC;
+    --light-blue-hex: #5096F1;
+    --dark-blue-hex: #0F56B3;
+    --primary-yellow-hex: #F0D042;
+    --light-yellow-hex: #F4DB71;
+    --dark-yellow-hex: #D4B011;
+    --white: #FFF;
+    --black: #000;
+    --gray-hex: #818181;
+    --light-gray-hex: #C0C0C0;
+
+    /* font sizes */
+    --xxxl-font: 64px;
+    --xxl-font: 48px;
+    --xl-font: 40px;
+    --l-font: 36px;
+    --m-font: 32px;
+    --s-font: 20px;
+    --xs-font: 14px;
+    --xxs-font: 12px;
+
+    /* font weights */
+    --bold-weight: 700;
+    --medium-weight: 500;
+    --regular-weight: 400;
+    --light-weight: 300;
+
+    /* border radiuses */
+    --card-border-radius: 10px;
+    --tile-border-radius: 5px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Anek Telugu', sans-serif;
+}
