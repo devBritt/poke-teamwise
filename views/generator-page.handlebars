@@ -26,16 +26,26 @@
                     </label>
                 </section>
                 <section id="type-select-container" class="cell auto">
-                    <label for="type-select">Types
+                    <label for="type-select">Types (Optional)
                         <select name="type-select" id="type-select">
-                            <option value="">Optional</option>
+                            <option value="">Start typing to search</option>
                             {{#each types as |type|}}
                             <option value="{{type}}">{{type}}</option>
                             {{/each}}
                         </select>
                     </label>
                 </section>
-                <button type="submit" id="generate-btn" class="cell small-2 button">Go!</button>
+                <section id="move-select-container" class="cell auto">
+                    <label for="move-select">Moves (Optional)
+                        <select name="move-select" id="move-select">
+                            <option value="">Start typing to search</option>
+                            {{#each moves as |move|}}
+                            <option value="{{move}}">{{move}}</option>
+                            {{/each}}
+                        </select>
+                    </label>
+                </section>
+                <button type="submit" id="generate-btn" class="cell small-1 button">Go!</button>
             </form>
         </section>
         <section id="pokemon-details" class="grid-container fluid">
