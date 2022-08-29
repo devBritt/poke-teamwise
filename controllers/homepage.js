@@ -5,14 +5,14 @@ router.get("/", (req, res) => {
   else res.sendFile("homepage.html", { root: path.join(__dirname, "public") });
 });
 
-router.get("/dashboard", (req, res) => {
-  if (req.session.loggedIn) {
-    res.setHeader("Content-Type", "text/html");
-    res.write("Welcome " + req.session.username + " to your dashboard");
-    res.write('<a href="/logout">Logout</a>');
-    res.end();
-  } else res.redirect("/login");
-});
+// router.get("/dashboard", (req, res) => {
+//   if (req.session.loggedIn) {
+//     res.setHeader("Content-Type", "text/html");
+//     res.write("Welcome " + req.session.username + " to your dashboard");
+//     res.write('<a href="/logout">Logout</a>');
+//     res.end();
+//   } else res.redirect("/login");
+// });
 
 router.get("/login", (req, res) => {
   res.sendFile("login.html", { root: path.join(__dirname, "public") });
