@@ -1,62 +1,46 @@
-<div class="row float-left">
-    <div class="card">
-        <div class="card-body" id="team-card">
-            <div class="small-6 columns">
-                <form>
-                    {{!-- <h2 id="team-title"> Team Name </h2> --}}
-                    <label id="team-title"> Team Name
-                        <select id="team-selector">
-                            <option value="Teamname">Team Name</option>
-                            <option value="Red">Red</option>
-                            <option value="Blue">Blue</option>
-                            <option value="Yellow">Yellow</option>
-                            <option value="Green">Green</option>
-                        </select>
-                    </label>
+<section class="grid-x">
+    <aside class="cell medium-3">
+        <section class="grid-container fluid">
+            <section class="grid-x" id="team-card">
+                <form class="grid-x">
+                    <section class="cell auto">
+                        <label id="team-title"> Team Name
+                            <select id="team-selector">
+                                <option value="">Pick a team</option>
+                                {{#each teams as |team|}}
+                                <option value="{{team.id}}">{{team.team_name}}</option>
+                                {{/each}}
+                            </select>
+                        </label>
+                    </section>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row float-right">
-    <div class="card">
-        <div class="card-body" id="fav-card">
-            <div class="small-6 columns">
-                <h2 id="fav-title"> Favorites </h2>
-            </div>
-            <div>
-                <h4>Dex #</h4>
-                <h4> Pokémon name </h4>
-                <p> type </p>
-            </div>
-            <div>
-                <h4>Dex #</h4>
-                <h4> Pokémon name  </h4>
-                <p> type </p>
-            </div>
-            <div>
-                <h4>Dex #</h4>
-                <h4> Pokémon name </h4>
-                <p> type </p>
-            </div>
-            <div>
-                <h4>Dex #</h4>
-                <h4> Pokémon name </h4>
-                <p> type </p>
-            </div>
-            <div>
-                <h4>Dex #</h4>
-                <h4> Pokémon name </h4>
-                <p> type </p>
-            </div>
-            <div>
-                <h4>Dex #</h4>
-                <h4> Pokémon name </h4>
-                <p> type </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+            </section>
+        </section>
+    </aside>
+    <section>
+        <form class="grid-x">
+            <section class="cell-auto">
+                <label for="member-select">Member
+                    <select id="pokemon-selector" name="member-select">
+                        <option value="">Team Members</option>
+                        {{!-- TO DO add members here --}}
+                        {{#each member as |member|}}
+                        <option value="{{member.id}}">{{member.pokemon_name}}</option>
+                        {{/each}}
+                    </select>
+                </label>
+            </section>
+            <section class="cell-auto">
+                <label for="favorites-select"> Favorites
+                    <select name="favorites-select">
+                        <option value="">Favorites</option>
+                        {{!-- TODO add favorites here --}}
+                        {{#each favorites as |favorite|}}
+                        <option value="{{favorites.id}}">{{favorites.pokemon_name}}</option>
+                        {{/each}}
+                    </select>
+                </label>
+            </section>
+        </form>
+    </section>
+</section>

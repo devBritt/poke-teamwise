@@ -1,7 +1,10 @@
+const poke_api = require('../utils/poke-api');
+const games = require('../utils/poke-games');
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Favorites, User, Team } = require("../models");
 const withAuth = require("../utils/auth");
+
 
 router.get("/", (req, res) => {
 //   Favorites.findAll({
@@ -24,16 +27,18 @@ router.get("/", (req, res) => {
 //       },
 //     ],
 //   })
-    // .then((dbTeamData) => {
-    //   const teams = dbTeamData.map((team) => team.get({ plain: true }));
-    //   console.log(teams);
-    //   res.render("dashboard", { teams, loggedIn: true });
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    //   res.status(500).json(err);
-    // });
-    res.render('dashboard');
+//     .then((dbTeamData) => {
+//       const teams = dbTeamData.map((team) => team.get({ plain: true }));
+//       console.log(teams);
+//       res.render("dashboard", { teams, loggedIn: true });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+    res.render('dashboard', { 
+        games,
+    });
 });
 
 router.get("/edit/:id", (req, res) => {});
