@@ -1,7 +1,7 @@
-<section class="grid-x">
-    <aside class="cell medium-3">
+<section id="teams-page" class="grid-x">
+    <aside id="members-window" class="cell medium-3">
         <section class="grid-container fluid">
-            <section class="grid-x" id="team-card">
+            <section class="grid-x" id="aside-title">
                 <form class="grid-x">
                     <section class="cell auto">
                         <label id="team-title"> Team Name
@@ -17,27 +17,16 @@
             </section>
         </section>
     </aside>
-    <section>
-        <form class="grid-x">
+    <section class="float-center" id="member-controls">
+        <form id="generator-form" class="grid-x">
             <section class="cell-auto">
-                <label for="member-select">Member
+                <label for="member-select" id="member-select">
                     <select id="pokemon-selector" name="member-select">
                         <option value="">Team Members</option>
-                        {{!-- TO DO add members here --}}
-                        {{#each member as |member|}}
                         <option value="{{member.id}}">{{member.pokemon_name}}</option>
-                        {{/each}}
-                    </select>
-                </label>
-            </section>
-            <section class="cell-auto">
-                <label for="favorites-select"> Favorites
-                    <select name="favorites-select">
+
                         <option value="">Favorites</option>
-                        {{!-- TODO add favorites here --}}
-                        {{#each favorites as |favorite|}}
                         <option value="{{favorites.id}}">{{favorites.pokemon_name}}</option>
-                        {{/each}}
                     </select>
                 </label>
             </section>
