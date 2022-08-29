@@ -72,6 +72,24 @@ p {
     font-weight: 700;
 }
 
+/* favorite button styles */
+.fave-btn-outline {
+    background-image: url('../assets/fave-outline.png');
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+.fave-btn-outline:hover {
+    background-image: url('../assets/fave-outline-hover.png');
+}
+.fave-btn-fill {
+    background-image: url('../assets/fave-fill.png');
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+.fave-btn-fill:hover {
+    background-image: url('../assets/fave-fill-hover.png');
+}
+
 /* generator styles */
 #generator-page {
     height: 100%;
@@ -139,7 +157,4 @@ p {
 .type {
     color: var(--gray-hex);
     font-size: var(--s-font);
-}
-.material-symbols-outlined:hover {
-    color: var(--gray-hex);
 }
