@@ -1,0 +1,45 @@
+<section id="generator-page" class="grid-x">
+    <aside id="members-window" class="cell medium-3">
+        <h3 class="aside-title">Team Roster</h3>
+        {{#each members as |member|}}
+        {{> member-tile}}
+        {{/each}}
+    </aside>
+    <section id="generator-center" class="cell auto">
+        <section id="generator-controls" class="grid-container fluid">
+            <form id="generator-form" class="grid-x">
+                <section id="game-select-container" class="cell auto">
+                    <label for="game-select">Game
+                        <select id="game-select" name="game-select" required>
+                            <option value="" selected>Pick a Game</option>
+                            {{#each games as |game|}}
+                            <option value="{{game.dexId}}">{{game.name}}</option>
+                            {{/each}}
+                        </select>
+                    </label>
+                </section>
+                <section id="type-select-container" class="cell auto">
+                    <label for="type-select">Types
+                        <select name="type-select" id="type-select">
+                            <option value="">Optional</option>
+                            {{#each types as |type|}}
+                            <option value="{{type}}">{{type}}</option>
+                            {{/each}}
+                        </select>
+                    </label>
+                </section>
+                <button type="submit" id="generate-btn" class="cell small-2 button">Go!</button>
+            </form>
+        </section>
+        <section id="pokemon-details" class="grid-container fluid">
+            <div class="grid-x">
+                <section id="pokemon-details-container">
+                    {{!-- TODO: add pokemon card --}}
+                </section>
+                <section id="evolutions-container">
+                    {{!-- TODO: add pokemon evolution details --}}
+                </section>
+            </div>
+        </section>
+    </section>
+</section>
