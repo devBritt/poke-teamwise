@@ -63,3 +63,14 @@ body {
 #nav-title {
     font-size: var(--xl-font);
 }
+
+/* generator styles */
+#members-window,
+#favorites-window {
+    background-color: var(--light-gray-hex);
+    height: 100%;
+}
+
+#generator-controls {
+    display: flex;
+}
