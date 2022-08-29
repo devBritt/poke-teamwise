@@ -1,5 +1,5 @@
 // random number generator
-const random = require('lodash/random');
+import PokeAPI from "./poke-api.js";
 const memberTiles = document.querySelectorAll('.roster-slot');
 
 async function formEventHandler(event) {
@@ -23,8 +23,20 @@ function toggleMemberLock(element) {
 
 }
 
+// function to get member details
+async function getDetails(pokemon) {
+    const pokeDetails = await PokeAPI.getPokeDetails(pokemon);
+
+    return pokeDetails;
+}
+
 // function to display member details
-async function displayDetails(element) {
+async function displayDetails(pokemon, element) {
+
+}
+
+// function to add details to member tiles
+async function fillTileDetails(pokeArr, elements) {
 
 }
 
@@ -45,7 +57,7 @@ async function buildTeam(game, type, move) {
 
 // function to retreive current team members
 function getMembers() {
-    
+
 }
 
 // function to save to Team table
@@ -53,8 +65,13 @@ async function saveTeam() {
 
 }
 
-
 document.querySelector('#generator-form').addEventListener('submit', formEventHandler);
 memberTiles.forEach(element => {
     element.addEventListener('click', rosterEventHandler);
 });
+
+async function test() {
+    console.log(await PokeAPI.getPokeTypes('sliggoo-hisui'));
+}
+
+test();

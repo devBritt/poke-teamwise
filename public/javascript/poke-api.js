@@ -1,8 +1,6 @@
 const axios = require('axios');
 // use for generator filters
 const intersection = require('lodash/intersection');
-// list of Pokémon games
-const games = require('./poke-games');
 // base pokedex URL
 const baseDexUrl = 'https://pokeapi.co/api/v2/pokedex/'
 
@@ -10,9 +8,11 @@ const PokeAPI = {
     // POKEMON STATS
     // get pokemon details by name
     getPokeDetails: async (pokemon) => {
-        const pokemonDetails = {};
+        const pokemonDetails = { name: pokemon};
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`);
 
+        // get pokemon types
+        pokemonDetails.types = await PokeAPI.getPokeTypes(pokemon);
         // get pokemon evolution chain
         pokemonDetails.evolution_chain = await PokeAPI.getPokeEvoChain(response.data);
         // get pokemon flavor text
@@ -30,6 +30,19 @@ const PokeAPI = {
         return pokemonDetails;
     },
 
+    // get pokemon types
+    getPokeTypes: async (pokemon) => {
+        const types = [];
+        // TODO: Move api call to getPokeDetails and pass in response
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+
+        response.data.types.forEach(type => {
+            types.push(type);
+        });
+        
+        return types;
+    },
+    
     // get pokemon evolution chain
     getPokeEvoChain: async (evoDetails) => {
         const evoChain = [];
@@ -67,6 +80,7 @@ const PokeAPI = {
 
     // get pokemon official art
     getPokeArt: async (pokemon) => {
+        // TODO: Move api call to getPokeDetails and pass in response
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
 
         const art = {
@@ -80,6 +94,7 @@ const PokeAPI = {
     // get pokemon stats
     getPokeStats: async (pokemon) => {
         const stats = {};
+        // TODO: Move api call to getPokeDetails and pass in response
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
 
         stats.hp = response.data.stats[0].base_stat;
@@ -111,6 +126,7 @@ const PokeAPI = {
     // request list of all pokemon with chosen type
     getPokeByType: async (type) => {
         const pokeByTypeArr = [];
+        // TODO: Move api call to getPokeDetails and pass in response
         const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
         
         response.data.pokemon.map(element => {
@@ -126,6 +142,7 @@ const PokeAPI = {
         const pokeByMoveArr = [];
         
         // get pokemon by move
+        // TODO: Move api call to getPokeDetails and pass in response
         const response = await axios.get(`https://pokeapi.co/api/v2/move/${move}`);
 
         response.data.learned_by_pokemon.map(element => {
