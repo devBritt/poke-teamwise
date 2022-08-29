@@ -90,6 +90,31 @@ p {
     background-image: url('../assets/fave-fill-hover.png');
 }
 
+/* login/signup page styles */
+#login-page {
+    height: 100%;
+}
+#signup-form,
+#login-form {
+    padding: calc(var(--spacing)*2);
+    overflow: hidden;
+}
+#login-form {
+    max-height: 30%;
+}
+#signup-form {
+    height: 100%;
+    background-color: var(--light-gray-hex);
+}
+#signup-form button,
+#login-form button {
+    background-color: var(--primary-blue-hex);
+}
+#signup-form button:hover,
+#login-form button:hover {
+    background-color: var(--light-blue-hex);
+}
+
 /* generator styles */
 #generator-page {
     height: 100%;
