@@ -62,13 +62,13 @@ p {
 .nav-link {
     color: var(--white);
     text-decoration: none;
-    font-size: var(--m-font);
+    font-size: var(--xs-font);
 }
 .nav-link:hover {
     color: var(--light-gray-hex);
 }
 #nav-title {
-    font-size: var(--xl-font);
+    font-size: var(--s-font);
     font-weight: 700;
 }
 
@@ -182,4 +182,25 @@ p {
 .type {
     color: var(--gray-hex);
     font-size: var(--s-font);
+}
+
+/* MEDIA QUERIES */
+/* medium and up */
+@media screen and (min-width: 40em) {
+    .nav-link {
+        font-size: var(--s-font);
+    }
+    #nav-title {
+        font-size: var(--l-font);
+    }
+}
+
+/* large and up */
+@media screen and (min-width: 64em) {
+    .nav-link {
+        font-size: var(--m-font);
+    }
+    #nav-title {
+        font-size: var(--xl-font);
+    }
 }
