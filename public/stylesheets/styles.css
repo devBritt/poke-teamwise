@@ -62,6 +62,7 @@ body {
 }
 #nav-title {
     font-size: var(--xl-font);
+    font-weight: 700;
 }
 
 /* generator styles */
@@ -70,7 +71,31 @@ body {
     background-color: var(--light-gray-hex);
     height: 100%;
 }
-
 #generator-controls {
     display: flex;
+    padding-top: var(--spacing);
+    padding-bottom: var(--spacing);
+}
+#generator-form {
+    width: 100%;
+}
+#game-select-container,
+#type-select-container {
+    margin-right: var(--spacing);
+}
+#generate-btn {
+    background-color: var(--primary-blue-hex);
+    padding-top: calc(var(--spacing)*1.2);
+    padding-bottom: calc(var(--spacing)*1.2);
+    margin-top: auto;
+}
+#generate-btn:hover {
+    background-color: var(--light-blue-hex);
+}
+.aside-title {
+    color: var(--white);
+    font-weight: 500;
+    font-size: var(--l-font);
+    margin: 10px auto;
+    text-align: center;
 }

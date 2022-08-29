@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { filter } = require('lodash');
 // use for generator filters
 const intersection = require('lodash/intersection');
 // list of Pokémon games
@@ -68,8 +69,13 @@ const PokeAPI = {
     // get pokemon official art
     getPokeArt: async (pokemon) => {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+
+        const art = {
+            official: response.data.sprites.other['official-artwork'].front_default,
+            sprite: response.data.sprites.front_default
+        };
         
-        return response.data.sprites.other['official-artwork'].front_default;
+        return art;
     },
 
     // get pokemon stats
@@ -157,40 +163,11 @@ const PokeAPI = {
 
             const filteredResults = intersection(dexResponse, moveResponse);
 
-            console.log(filteredResults);
-            return;
+            return filteredResults;
         }
     },
 
     // OTHER LISTS
-    // get list of all move names
-    getAllMoves: async () => {
-        // array to store move names
-        const moveNames = [];
-
-        const response = await axios.get('https://pokeapi.co/api/v2/move?limit=1000');
-
-        response.data.results.map(element => {
-            moveNames.push(element.name);
-        });
-
-        return moveNames;
-    },
-
-    // get list of moves by type
-    getMovesByType: async (type) => {
-        // array to store move names
-        const moveNames = [];
-
-        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
-
-        response.data.moves.map(element => {
-            moveNames.push(element.name);
-        });
-
-        return moveNames;
-    },
-
     // get list of all types
     getAllTypes: async () => {
         // array to store type names
@@ -199,10 +176,12 @@ const PokeAPI = {
         const response = await axios.get('https://pokeapi.co/api/v2/type?limit=30');
 
         response.data.results.map(element => {
-            typeNames.push(element.name);
+            if (element.name !== 'unknown' && element.name !== 'shadow') {
+                typeNames.push(element.name);
+            }
         });
 
-        console.log(typeNames);
+        return typeNames;
     }
 }
 
