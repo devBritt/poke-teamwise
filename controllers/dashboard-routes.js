@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
 //       res.status(500).json(err);
 //     });
     res.render('dashboard', { 
-        games,
+        games, loggedIn: true
     });
 });
 
