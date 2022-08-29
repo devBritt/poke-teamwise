@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { filter } = require('lodash');
 // use for generator filters
 const intersection = require('lodash/intersection');
 // list of Pokémon games
@@ -182,6 +181,19 @@ const PokeAPI = {
         });
 
         return typeNames;
+    },
+    // get list of all move names
+    getAllMoves: async () => {
+        // array to store move names
+        const moveNames = [];
+
+        const response = await axios.get('https://pokeapi.co/api/v2/move?limit=1000');
+
+        response.data.results.map(element => {
+            moveNames.push(element.name);
+        });
+
+        return moveNames;
     }
 }
 

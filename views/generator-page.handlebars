@@ -2,7 +2,14 @@
     <aside id="members-window" class="cell medium-3">
         <h3 class="aside-title">Team Roster</h3>
         {{#each members as |member|}}
-        {{> member-tile}}
+        <article id="slot-{{member.num}}" class="roster-slot grid-x">
+            <section class="member-lock cell small-1">
+                <span class="lock-icon" class="material-symbols-outlined">lock</span>
+            </section>
+            <section class="member-tile cell auto">
+                {{> member-tile}}
+            </section>
+        </article>
         {{/each}}
     </aside>
     <section id="generator-center" class="cell auto">
@@ -43,3 +50,5 @@
         </section>
     </section>
 </section>
+
+<script src="/javascript/team-generator.js"></script>
