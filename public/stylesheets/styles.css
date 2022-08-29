@@ -63,3 +63,29 @@ body {
 #nav-title {
     font-size: var(--xl-font);
 }
+
+/* dashboard styling */
+
+#fav-title{
+    font-weight: var(--bold-weight);
+    color: var(--white);
+}
+
+#fav-card {
+    background-color: var(--light-gray-hex);
+}
+
+#team-title  {
+    font-weight: var(--bold-weight);
+    font-size: var(--xl-font);
+    color: var(--white);
+}
+
+#team-card {
+    background-color: var(--light-gray-hex);
+}
+
+#team-selector {
+    font-weight: var(--medium-weight);
+    font-size: var(--s-font);
+}
