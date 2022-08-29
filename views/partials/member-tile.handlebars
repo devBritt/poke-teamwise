@@ -1,25 +1,27 @@
-<div class="grid-x align-middle">
-    <section class="sprite-container cell small-3">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png" alt="Goodra front default sprite">
-    </section>
-    <section class="member-info-container cell small-9">
-        <div class="member-nums grid-x align-justify">
-            <p class="roster-dex-num cell auto">Dex #</p>
-            <p class="member-num cell small-1">#1</p>
-        </div>
-        <div class="pokemon-name-container">
-            <p class="member-name">Goodra</p>
-        </div>
-        <div class="types-favorite-container grid-x">
-            <span class="type cell auto">
-                Dragon
-            </span>
-            <span class="type cell auto">
-                Poison
-            </span>
-            <button class="favorite-btn cell small-1"><span class="favorite-icon material-symbols material-symbols-outlined">
-                star
-            </span></button>
-        </div>
-    </section>
-</div>
+<article id="member-{{member.num}}" class="grid-container member-tile">
+    <div class="grid-x align-middle">
+        <section class="sprite-container cell small-3">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png" alt="{{member.name}} front default sprite">
+        </section>
+        <section class="member-info-container cell small-9">
+            <div class="member-nums grid-x align-justify">
+                <p class="roster-dex-num cell auto"># {{member.dexNum}}</p>
+                <p class="member-num cell small-1">{{member.num}}</p>
+            </div>
+            <div class="pokemon-name-container">
+                <p class="member-name">Goodra</p>
+            </div>
+            <div class="types-favorite-container grid-x">
+                <span class="type cell auto">
+                    Dragon
+                </span>
+                <span class="type cell auto">
+                    Poison
+                </span>
+                <button class="favorite-btn cell small-1"><span class="favorite-icon material-symbols material-symbols-outlined">
+                    star
+                </span></button>
+            </div>
+        </section>
+    </div>
+</article>

@@ -1,11 +1,9 @@
 <section id="generator-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
         <h3 class="aside-title">Team Roster</h3>
-        <article id="member-1" class="grid-container member-tile">
-            {{!-- member details tile start --}}
-            {{> member-tile}}
-            {{!-- member details tile start --}}
-        </article>
+        {{#each members as |member|}}
+        {{> member-tile}}
+        {{/each}}
     </aside>
     <section id="generator-center" class="cell auto">
         <section id="generator-controls" class="grid-container fluid">
