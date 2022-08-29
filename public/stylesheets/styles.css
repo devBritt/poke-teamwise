@@ -49,6 +49,9 @@ body {
 main {
     height: 100%;
 }
+p {
+    margin: 0;
+}
 
 /* main template styles */
 .navbar {
@@ -105,4 +108,38 @@ main {
     font-size: var(--l-font);
     margin: 10px auto;
     text-align: center;
+}
+
+/* roster tile styles */
+.member-tile {
+    background-color: var(--white);
+    margin-right: calc(var(--spacing)*2);
+    margin-left: calc(var(--spacing)*2);
+    margin-bottom: var(--spacing);
+    padding: var(--spacing);
+    border-radius: var(--tile-border-radius);
+}
+.member-nums,
+.pokemon-name-container {
+    margin-bottom: calc(var(--spacing)*0.25);
+}
+.roster-dex-num {
+    color: var(--primary-red-hex);
+    font-size: var(--s-font);
+    font-weight: var(--medium-weight);
+}
+.member-num {
+    color: var(--light-gray-hex);
+    font-size: var(--s-font);
+}
+.member-name {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+}
+.type {
+    color: var(--gray-hex);
+    font-size: var(--s-font);
+}
+.material-symbols-outlined:hover {
+    color: var(--gray-hex);
 }
