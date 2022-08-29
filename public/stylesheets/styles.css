@@ -72,31 +72,49 @@ p {
     font-weight: 700;
 }
 
-/* dashboard styling */
-
-#fav-title{
-    font-weight: var(--bold-weight);
-    color: var(--white);
+/* favorite button styles */
+.fave-btn-outline {
+    background-image: url('../assets/fave-outline.png');
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+.fave-btn-outline:hover {
+    background-image: url('../assets/fave-outline-hover.png');
+}
+.fave-btn-fill {
+    background-image: url('../assets/fave-fill.png');
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+.fave-btn-fill:hover {
+    background-image: url('../assets/fave-fill-hover.png');
 }
 
-#fav-card {
+/* login/signup page styles */
+#login-page {
+    height: 100%;
+}
+#signup-form,
+#login-form {
+    padding: calc(var(--spacing)*2);
+    overflow: hidden;
+}
+#login-form {
+    max-height: 30%;
+}
+#signup-form {
+    height: 100%;
     background-color: var(--light-gray-hex);
 }
-
-#team-title  {
-    font-weight: var(--bold-weight);
-    font-size: var(--xl-font);
-    color: var(--white);
+#signup-form button,
+#login-form button {
+    background-color: var(--primary-blue-hex);
+}
+#signup-form button:hover,
+#login-form button:hover {
+    background-color: var(--light-blue-hex);
 }
 
-#team-card {
-    background-color: var(--light-gray-hex);
-}
-
-#team-selector {
-    font-weight: var(--medium-weight);
-    font-size: var(--s-font);
-}
 /* generator styles */
 #generator-page {
     height: 100%;
@@ -164,7 +182,4 @@ p {
 .type {
     color: var(--gray-hex);
     font-size: var(--s-font);
-}
-.material-symbols-outlined:hover {
-    color: var(--gray-hex);
 }
