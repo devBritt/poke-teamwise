@@ -6,7 +6,7 @@
                     <section class="cell auto">
                         <label id="team-title"> Team Name
                             <select id="team-selector">
-                                <option value="">Pick a team</option>
+                                <option value="">Pick a Team</option>
                                 {{#each teams as |team|}}
                                 <option value="{{team.id}}">{{team.team_name}}</option>
                                 {{/each}}
@@ -18,16 +18,16 @@
         </section>
     </aside>
     <section class="float-center" id="member-controls">
-        <form id="generator-form" class="grid-x">
-            <section class="cell-auto">
+        <form id="member-form" class="grid-x">
+            <section class="cell-auto" id="member-form">
                 <label for="member-select" id="member-select">
-                    <select id="pokemon-selector" name="member-select">
+                    <select name="member-select" id="pokemon-selector">
                         <option value="">Team Members</option>
                         <option value="{{member.id}}">{{member.pokemon_name}}</option>
-
                         <option value="">Favorites</option>
                         <option value="{{favorites.id}}">{{favorites.pokemon_name}}</option>
                     </select>
+                      <button type="submit" id="generate-btn" class="cell small-2 button">Go!</button>
                 </label>
             </section>
         </form>

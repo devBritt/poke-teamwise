@@ -151,10 +151,15 @@ p {
     height: 100%;
 }
 
+#member-form {
+    width: 100%;
+}
+
 #member-controls {
     display: flex;
     padding-top: var(--spacing);
     padding-bottom: var(--spacing);
+    width: 20%;
 }
 
 /* generator styles */

@@ -7,13 +7,11 @@ const withAuth = require("../utils/auth");
 
 
 router.get("/", (req, res) => {
-
+    
     res.render('dashboard', { 
         loggedIn: req.session.loggedIn,
         games,
     });
 });
-
-router.get("/edit/:id", (req, res) => {});
 
 module.exports = router;
