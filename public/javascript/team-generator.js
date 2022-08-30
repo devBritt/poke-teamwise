@@ -1,5 +1,4 @@
 // random number generator
-import PokeAPI from "./poke-api.js";
 const memberTiles = document.querySelectorAll('.roster-slot');
 
 async function formEventHandler(event) {
@@ -25,9 +24,7 @@ function toggleMemberLock(element) {
 
 // function to get member details
 async function getDetails(pokemon) {
-    const pokeDetails = await PokeAPI.getPokeDetails(pokemon);
-
-    return pokeDetails;
+    
 }
 
 // function to display member details
@@ -69,9 +66,3 @@ document.querySelector('#generator-form').addEventListener('submit', formEventHa
 memberTiles.forEach(element => {
     element.addEventListener('click', rosterEventHandler);
 });
-
-async function test() {
-    console.log(await PokeAPI.getPokeTypes('sliggoo-hisui'));
-}
-
-test();

@@ -3,7 +3,7 @@ const favoritesRoutes = require('./favorites-routes');
 const userRoutes = require('./user-routes');
 const teamRoutes = require('./team-routes');
 const memberRoutes = require('./member-routes');
-const pokemonRoutes = requre('./pokemon');
+const pokemonRoutes = require('./pokemon');
 
 router.use('/favorite', favoritesRoutes);
 router.use('/user', userRoutes);
