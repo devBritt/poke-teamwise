@@ -11,6 +11,16 @@
                                 <option value="{{team.id}}">{{team.team_name}}</option>
                                 {{/each}}
                             </select>
+                            <aside id="members-window" class="cell medium-3">
+                                <h3 class="aside-title">Team Roster</h3>
+                                {{#each members as |member|}}
+                                <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
+                                    <section class="member-tile cell auto">
+                                        {{> member-tile member=member}}
+                                    </section>
+                                </article>
+                                {{/each}}
+                            </aside 
                         </label>
                     </section>
                 </form>
@@ -24,11 +34,9 @@
                     <select name="member-select" id="pokemon-selector">
                         <option value="">Team Members</option>
                         <option value="{{member.id}}">{{member.pokemon_name}}</option>
-                        <option value="">Favorites</option>
-                        <option value="{{favorites.id}}">{{favorites.pokemon_name}}</option>
                     </select>
-                      <button type="submit" id="generate-btn" class="cell small-2 button">Go!</button>
                 </label>
+                <button type="submit" id="details-btn" class="cell small-2 button">Pokémon Details!</button>
             </section>
         </form>
     </section>

@@ -162,6 +162,13 @@ p {
     width: 20%;
 }
 
+#details-btn {
+    background-color: var(--primary-blue-hex);
+    padding-top: calc(var(--spacing)*1.2);
+    padding-bottom: calc(var(--spacing)*1.2);
+    margin-top: auto;
+}
+
 /* generator styles */
 #generator-page {
     height: 100%;
