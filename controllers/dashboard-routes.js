@@ -7,7 +7,7 @@ const { Favorites, User, Team, Member } = require("../models");
 const withAuth = require("../utils/auth");
 
 
-router.get("/", async (req, res) => {
+router.use("/", async (req, res) => {
     //TODO get list of users's teams from db
     User.findOne ({
         where: {
@@ -17,11 +17,11 @@ router.get("/", async (req, res) => {
             {
                 model: Team,
                 attributes: ['id', 'team_name'],
+                include: {
+                    model: Member,
+                    attributes: ['id', 'team_id']
+                }
             },
-            // {
-            //     model: Member, 
-            //     attributes: ['pokemon_name'],
-            // },
         ],
     })
     //TODO use first team from list of teams to fill in member tiles
@@ -41,6 +41,7 @@ router.get("/", async (req, res) => {
 
     res.render('dashboard', { 
         loggedIn: req.session.loggedIn,
+        games,
         members,
         memberDetails,
         // teams

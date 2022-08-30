@@ -1,7 +1,7 @@
 const starterTeam = [
     'sliggoo',
     'froslass',
-    'samurott',
+    'oshawott',
     'espeon',
     'steelix',
     'infernape'
