@@ -11,6 +11,8 @@ async function formEventHandler(event) {
 
     // get filtered results
     const pokemonList = await getPokemonList(game, type, move);
+
+    console.log(pokemonList);
 }   
 
 // async function rosterEventHandler(event) {
@@ -46,11 +48,17 @@ async function fillTileDetails(pokeArr, elements) {
 
 // function to retrieve pokemon list
 async function getPokemonList(game, type, move) {
-    // create object for fetch body
-    const reqBody = { dexId: game };
+    const response = await fetch('/api/pokemon', {
+        method: 'POST',
+        body: JSON.stringify({
+            dexId: game,
+            type: type,
+            move: move
+        }),
+        headers: { 'Content-Type': 'application/json'}
+    });
 
-    // check for type and move selections
-
+    return response.json();
 }
 
 // function to pick random pokemon
