@@ -14,7 +14,7 @@ async function pokemonByGame(dexId) {
         response.data.pokemon_entries.map(element => {
             dexArr.push(element.pokemon_species.name);
         });
-        console.log(dexArr);
+        
         return dexArr;
     } catch(err) {
         console.log(err);
@@ -113,11 +113,10 @@ async function getAllMoves() {
 }
 
 // get pokemon details
-async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
+async function getPokemonDetails(pokemon, game, memberNum) {
     const pokemonDetails = {
         name: pokemon,
-        memberNum: memberNum,
-        isFavorite: isFavorite
+        memberNum: memberNum
     };
     try {
         // request details from PokeAPI pokemon endpoint
@@ -163,7 +162,7 @@ async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
 
         // get pokemon's base stats
         pokemonDetails.stats = getStats(pokemonRes.data.stats);
-        console.log(pokemonDetails);
+        
         return pokemonDetails;
     } catch(err) {
         console.log(err);

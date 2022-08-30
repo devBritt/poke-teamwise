@@ -1,20 +1,28 @@
 // random number generator
-const memberTiles = document.querySelectorAll('.roster-slot');
+// const memberTiles = document.querySelectorAll('.roster-slot');
 
 async function formEventHandler(event) {
     event.preventDefault();
-}
 
-async function rosterEventHandler(event) {
-    event.preventDefault();
+    // get game, type, move input from elements
+    const game = document.querySelector('#game-select').selectedOptions[0].value;
+    const type = document.querySelector('#type-select').selectedOptions[0].value;
+    const move = document.querySelector('#move-select').selectedOptions[0].value;
 
-    // check event target member-lock or member-tile click
-    if (event.target.classList.includes('lock-icon')) {
-        console.log('lock icon clicked');
-    } else if (event.target.classList.includes('member-tile')) {
-        console.log('member tile clicked');
-    }
-}
+    // get filtered results
+    const pokemonList = await getPokemonList(game, type, move);
+}   
+
+// async function rosterEventHandler(event) {
+//     event.preventDefault();
+
+//     // check event target member-lock or member-tile click
+//     if (event.target.classList.includes('lock-icon')) {
+//         console.log('lock icon clicked');
+//     } else if (event.target.classList.includes('member-tile')) {
+//         console.log('member tile clicked');
+//     }
+// }
 
 // function to lock/unlock member
 function toggleMemberLock(element) {
@@ -38,6 +46,10 @@ async function fillTileDetails(pokeArr, elements) {
 
 // function to retrieve pokemon list
 async function getPokemonList(game, type, move) {
+    // create object for fetch body
+    const reqBody = { dexId: game };
+
+    // check for type and move selections
 
 }
 
@@ -62,6 +74,6 @@ async function saveTeam() {
 }
 
 document.querySelector('#generator-form').addEventListener('submit', formEventHandler);
-memberTiles.forEach(element => {
-    element.addEventListener('click', rosterEventHandler);
-});
+// memberTiles.forEach(element => {
+//     element.addEventListener('click', rosterEventHandler);
+// });

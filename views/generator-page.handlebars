@@ -30,7 +30,7 @@
                         <select name="type-select" id="type-select">
                             <option value="">Start typing to search</option>
                             {{#each types as |type|}}
-                            <option value="{{type}}">{{type}}</option>
+                            <option value="{{format_select_options type}}">{{format_select_options type}}</option>
                             {{/each}}
                         </select>
                     </label>
@@ -40,7 +40,7 @@
                         <select name="move-select" id="move-select">
                             <option value="">Start typing to search</option>
                             {{#each moves as |move|}}
-                            <option value="{{move}}">{{move}}</option>
+                            <option value="{{format_select_options move}}">{{format_select_options move}}</option>
                             {{/each}}
                         </select>
                     </label>
