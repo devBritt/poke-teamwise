@@ -9,11 +9,11 @@
                 <p class="member-num cell small-1">{{member.memberNum}}</p>
             </div>
             <div class="pokemon-name-container">
-                <p class="member-name">{{member.name}}</p>
+                <p class="member-name">{{capitalize member.name}}</p>
             </div>
-            <div class="types-fave-container grid-x">
+            <div class="types-container grid-x">
                 {{#each member.types as |type|}}
-                <span class="type cell auto">{{type}}</span>
+                <span class="type cell auto">{{capitalize type}}</span>
                 {{/each}}
             </div>
         </section>

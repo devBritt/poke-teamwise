@@ -14,7 +14,7 @@ async function pokemonByGame(dexId) {
         response.data.pokemon_entries.map(element => {
             dexArr.push(element.pokemon_species.name);
         });
-        console.log(dexArr);
+        
         return dexArr;
     } catch(err) {
         console.log(err);
@@ -28,7 +28,7 @@ async function pokemonByType(type) {
     
     try {
         // get pokemon by type
-        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
+        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type.toLowerCase()}`);
     
         response.data.pokemon.map(element => {
             pokemonArr.push(element.pokemon.name);
@@ -48,7 +48,7 @@ async function pokemonByMove(move) {
         
     try {
         // get pokemon by move
-        const response = await axios.get(`https://pokeapi.co/api/v2/move/${move}`);
+        const response = await axios.get(`https://pokeapi.co/api/v2/move/${move.toLowerCase()}`);
 
         response.data.learned_by_pokemon.map(element => {
             pokemonArr.push(element.name);
@@ -113,11 +113,10 @@ async function getAllMoves() {
 }
 
 // get pokemon details
-async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
+async function getPokemonDetails(pokemon, gameId, memberNum) {
     const pokemonDetails = {
         name: pokemon,
-        memberNum: memberNum,
-        isFavorite: isFavorite
+        memberNum: memberNum
     };
     try {
         // request details from PokeAPI pokemon endpoint
@@ -126,7 +125,7 @@ async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
         const speciesRes = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`);
     
         // get pokedex number
-        pokemonDetails.dexNum = await getPokemonDexNum(speciesRes.data, game);
+        pokemonDetails.dexNum = await getPokemonDexNum(speciesRes.data, Number.parseInt(gameId));
         
         // get pokemon types
         pokemonDetails.types = getPokemonTypes(pokemonRes.data.types);
@@ -152,7 +151,7 @@ async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
         }
 
         // get flavor text
-        pokemonDetails.flavor_text = getFlavText(speciesRes.data.flavor_text_entries, game);
+        pokemonDetails.flavor_text = getFlavText(speciesRes.data.flavor_text_entries, Number.parseInt(gameId));
 
         // get pokemon legendary/mythical status
         pokemonDetails.is_legendary = speciesRes.data.is_legendary;
@@ -163,7 +162,7 @@ async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
 
         // get pokemon's base stats
         pokemonDetails.stats = getStats(pokemonRes.data.stats);
-        console.log(pokemonDetails);
+        
         return pokemonDetails;
     } catch(err) {
         console.log(err);
@@ -173,10 +172,21 @@ async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
 
 // helper functions DO NOT EXPORT
 // get a pokemon's pokedex number from api response
-async function getPokemonDexNum(speciesData, gameName) {
-    const gameObj = gamesList.find(game => game.name.toLowerCase() === gameName.split('-').join(' '));
+async function getPokemonDexNum(speciesData, gameId) {
+    const gameObj = gamesList.find(game => {
+        let found = false;
+        
+        game.dexId.map(dexId => {
+            if (dexId === gameId) {
+                found = true;
+            }
+        });
+        
+        return found;
+    });
     
     try {
+        
         const promises = gameObj.dexId.map(async dex => {
             const dexRes = axios.get(`https://pokeapi.co/api/v2/pokedex/${dex}`);
             return dexRes;
@@ -247,10 +257,24 @@ function getStats(stats) {
 }
 
 // get a pokemon's flavor text from api response
-function getFlavText(flavTextData, game) {
+function getFlavText(flavTextData, gameId) {
     let flavor_text = '';
+
+    // get game name
+    const game = gamesList.find(game => {
+        let found = false;
+        
+        game.dexId.map(dexId => {
+            if (dexId === gameId) {
+                found = true;
+            }
+        });
+        
+        return found;
+    });
+    
     flavTextData.forEach(entry => {
-        if (entry.language.name == 'en' && entry.version.name == game) {
+        if (entry.language.name == 'en' && entry.version.name == game.name.split(' ').join('-').toLowerCase()) {
             flavor_text = entry.flavor_text;
         }
     });

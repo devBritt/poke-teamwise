@@ -11,7 +11,7 @@ const {
 const intersection = require('lodash/intersection');
 
 // route to get pokemon list
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     const dexRes = await pokemonByGame(req.body.dexId);
     let typeRes;
     let moveRes;
@@ -22,39 +22,38 @@ router.get('/', async (req, res) => {
         moveRes = await pokemonByMove(req.body.move);
 
         const filteredResults = intersection(dexRes, typeRes, moveRes);
-
-        res.json(filteredResults);
+        
+        res.send(filteredResults);
     } else if (req.body.type) {
         typeRes = await pokemonByType(req.body.type);
 
         const filteredResults = intersection(dexRes, typeRes);
 
-        res.json(filteredResults);
+        res.send(filteredResults);
     } else if (req.body.move) {
         moveRes = await pokemonByMove(req.body.move);
 
         const filteredResults = intersection(dexRes, moveRes);
 
-        res.json(filteredResults);
+        res.send(filteredResults);
     } else {
-        res.json(dexRes);
+        res.send(dexRes);
     }
 });
 
 // route to get all types
-router.get('/types', async (req, res) => {
-    console.log('inside /api/types');
-    res.json(await getAllTypes());
+router.post('/types', async (req, res) => {
+    res.send(await getAllTypes());
 });
 
 // route to get all moves
-router.get('/moves', async (req, res) => {
-    res.json(await getAllMoves());
+router.post('/moves', async (req, res) => {
+    res.send(await getAllMoves());
 });
 
 // route to get details for a single pokemon
-router.get('/:pokemon', async (req, res) => {
-    res.json(await getPokemonDetails(req.params.pokemon, req.body.game));
+router.post('/:pokemon', async (req, res) => {
+    res.send(await getPokemonDetails(req.params.pokemon, req.body.dexId));
 });
 
 module.exports = router;
