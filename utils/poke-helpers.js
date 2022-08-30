@@ -28,7 +28,7 @@ async function pokemonByType(type) {
     
     try {
         // get pokemon by type
-        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type}`);
+        const response = await axios.get(`https://pokeapi.co/api/v2/type/${type.toLowerCase()}`);
     
         response.data.pokemon.map(element => {
             pokemonArr.push(element.pokemon.name);
@@ -48,7 +48,7 @@ async function pokemonByMove(move) {
         
     try {
         // get pokemon by move
-        const response = await axios.get(`https://pokeapi.co/api/v2/move/${move}`);
+        const response = await axios.get(`https://pokeapi.co/api/v2/move/${move.toLowerCase()}`);
 
         response.data.learned_by_pokemon.map(element => {
             pokemonArr.push(element.name);
