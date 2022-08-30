@@ -115,6 +115,60 @@ p {
     background-color: var(--light-blue-hex);
 }
 
+/* dashboard styling */
+
+#fav-title{
+    font-weight: var(--bold-weight);
+    color: var(--white);
+}
+
+#fav-card {
+    background-color: var(--light-gray-hex);
+}
+
+#team-title  {
+    color: var(--white);
+    font-weight: 500;
+    font-size: var(--l-font);
+    margin: 10px auto;
+    text-align: center;
+}
+
+#aside-title {
+    color: var(--white);
+    font-weight: 500;
+    font-size: var(--l-font);
+    margin: 10px auto;
+    text-align: center;
+}
+
+#team-selector {
+    font-weight: var(--medium-weight);
+    font-size: var(--s-font);
+}
+
+#teams-page{
+    height: 100%;
+}
+
+#member-form {
+    width: 100%;
+}
+
+#member-controls {
+    display: flex;
+    padding-top: var(--spacing);
+    padding-bottom: var(--spacing);
+    width: 20%;
+}
+
+#details-btn {
+    background-color: var(--primary-blue-hex);
+    padding-top: calc(var(--spacing)*1.2);
+    padding-bottom: calc(var(--spacing)*1.2);
+    margin-top: auto;
+}
+
 /* generator styles */
 #generator-page {
     height: 100%;

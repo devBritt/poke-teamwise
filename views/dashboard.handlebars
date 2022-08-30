@@ -1,53 +1,45 @@
-<div class="row float-left">
-    <div class="small-6 columns">
-        <form>
-            <h2> Team Name
-                <select>
-                    <option value="Teamname">Team Name</option>
-                    <option value="Red">Red</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="Green">Green</option>
-                </select>
-            </h2>
+<section id="teams-page" class="grid-x">
+    <aside id="members-window" class="cell medium-3">
+        <section class="grid-container fluid">
+            <section class="grid-x" id="aside-title">
+                <form class="grid-x">
+                    <section class="cell auto">
+                        <label id="team-title"> Team Name
+                            <select id="team-selector">
+                                <option value="">Pick a Team</option>
+                                {{#each teams as |team|}}
+                                <option value="{{team.id}}">{{team.team_name}}</option>
+                                {{/each}}
+                            </select>
+                            <aside id="members-window" class="cell medium-3">
+                                <h3 class="aside-title">Team Roster</h3>
+                                {{#each members as |member|}}
+                                <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
+                                    <section class="member-tile cell auto">
+                                        {{> member-tile member=member}}
+                                    </section>
+                                </article>
+                                {{/each}}
+                            </aside 
+                        </label>
+                    </section>
+                </form>
+            </section>
+        </section>
+    </aside>
+    <section class="float-center" id="member-controls">
+        <form id="member-form" class="grid-x">
+            <section class="cell-auto" id="member-form">
+                <label for="member-select" id="member-select">
+                    <select name="member-select" id="pokemon-selector">
+                        <option value="">Team Members</option>
+                        <option value="{{member.id}}">{{member.pokemon_name}}</option>
+                    </select>
+                </label>
+                <button type="submit" id="details-btn" class="cell small-2 button">Get Pokémon Details!</button>
+            </section>
         </form>
-    </div>
-</div>
-
-<div class="row float-right">
-    <div class="small-6 columns">
-        <h2> Favorites </h2>
-    </div>
-    <div>
-        <h4>Dex #</h4>
-        <h4> Pokémon name </h4>
-        <p> type </p>
-    </div>
-    <div>
-        <h4>Dex #</h4>
-        <h4> Pokémon name  </h4>
-        <p> type </p>
-    </div>
-    <div>
-        <h4>Dex #</h4>
-        <h4> Pokémon name </h4>
-        <p> type </p>
-    </div>
-    <div>
-        <h4>Dex #</h4>
-        <h4> Pokémon name </h4>
-        <p> type </p>
-    </div>
-    <div>
-        <h4>Dex #</h4>
-        <h4> Pokémon name </h4>
-        <p> type </p>
-    </div>
-    <div>
-        <h4>Dex #</h4>
-        <h4> Pokémon name </h4>
-        <p> type </p>
-    </div>
-</div>
+    </section>
+</section>
 
 
