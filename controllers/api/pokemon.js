@@ -43,7 +43,6 @@ router.post('/', async (req, res) => {
 
 // route to get all types
 router.post('/types', async (req, res) => {
-    console.log('inside /api/types');
     res.send(await getAllTypes());
 });
 
@@ -54,7 +53,7 @@ router.post('/moves', async (req, res) => {
 
 // route to get details for a single pokemon
 router.post('/:pokemon', async (req, res) => {
-    res.send(await getPokemonDetails(req.params.pokemon, req.body.game));
+    res.send(await getPokemonDetails(req.params.pokemon, req.body.dexId));
 });
 
 module.exports = router;

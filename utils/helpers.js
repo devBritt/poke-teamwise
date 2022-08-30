@@ -16,5 +16,8 @@ module.exports = {
         }
         
         return newText;
+    },
+    capitalize: text => {
+        return startCase(text);
     }
 }
