@@ -44,6 +44,13 @@
 body {
     font-family: 'Anek Telugu', sans-serif;
     font-weight: var(--regular-weight);
+    height: 100vh;
+}
+main {
+    height: 100%;
+}
+p {
+    margin: 0;
 }
 
 /* main template styles */
@@ -55,11 +62,145 @@ body {
 .nav-link {
     color: var(--white);
     text-decoration: none;
-    font-size: var(--m-font);
+    font-size: var(--xs-font);
 }
 .nav-link:hover {
     color: var(--light-gray-hex);
 }
 #nav-title {
-    font-size: var(--xl-font);
+    font-size: var(--s-font);
+    font-weight: 700;
+}
+
+/* favorite button styles */
+.fave-btn-outline {
+    background-image: url('../assets/fave-outline.png');
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+.fave-btn-outline:hover {
+    background-image: url('../assets/fave-outline-hover.png');
+}
+.fave-btn-fill {
+    background-image: url('../assets/fave-fill.png');
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+}
+.fave-btn-fill:hover {
+    background-image: url('../assets/fave-fill-hover.png');
+}
+
+/* login/signup page styles */
+#login-page {
+    height: 100%;
+}
+#signup-form,
+#login-form {
+    padding: calc(var(--spacing)*2);
+    overflow: hidden;
+}
+#login-form {
+    max-height: 30%;
+}
+#signup-form {
+    height: 100%;
+    background-color: var(--light-gray-hex);
+}
+#signup-form button,
+#login-form button {
+    background-color: var(--primary-blue-hex);
+}
+#signup-form button:hover,
+#login-form button:hover {
+    background-color: var(--light-blue-hex);
+}
+
+/* generator styles */
+#generator-page {
+    height: 100%;
+}
+#members-window,
+#favorites-window {
+    background-color: var(--light-gray-hex);
+    height: 100%;
+}
+#generator-controls {
+    display: flex;
+    padding-top: var(--spacing);
+    padding-bottom: var(--spacing);
+}
+#generator-form {
+    width: 100%;
+}
+#game-select-container,
+#type-select-container {
+    margin-right: var(--spacing);
+}
+#generate-btn {
+    background-color: var(--primary-blue-hex);
+    padding-top: calc(var(--spacing)*1.2);
+    padding-bottom: calc(var(--spacing)*1.2);
+    margin-top: auto;
+}
+#generate-btn:hover {
+    background-color: var(--light-blue-hex);
+}
+.aside-title {
+    color: var(--white);
+    font-weight: 500;
+    font-size: var(--l-font);
+    margin: 10px auto;
+    text-align: center;
+}
+
+/* roster tile styles */
+.member-tile {
+    background-color: var(--white);
+    margin-right: calc(var(--spacing)*2);
+    margin-left: calc(var(--spacing)*2);
+    margin-bottom: var(--spacing);
+    padding: var(--spacing);
+    border-radius: var(--tile-border-radius);
+}
+.member-nums,
+.pokemon-name-container {
+    margin-bottom: calc(var(--spacing)*0.25);
+}
+.roster-dex-num {
+    color: var(--primary-red-hex);
+    font-size: var(--s-font);
+    font-weight: var(--medium-weight);
+}
+.member-num {
+    color: var(--light-gray-hex);
+    font-size: var(--s-font);
+}
+.member-name {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+}
+.type {
+    color: var(--gray-hex);
+    font-size: var(--s-font);
+}
+
+/* MEDIA QUERIES */
+/* medium and up */
+@media screen and (min-width: 40em) {
+    .nav-link {
+        font-size: var(--s-font);
+    }
+    #nav-title {
+        font-size: var(--l-font);
+    }
+}
+
+/* large and up */
+@media screen and (min-width: 64em) {
+    .nav-link {
+        font-size: var(--m-font);
+    }
+    #nav-title {
+        font-size: var(--xl-font);
+    }
 }

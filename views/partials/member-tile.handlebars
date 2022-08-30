@@ -1,0 +1,21 @@
+<div id="member-{{member.memberNum}}" class="grid-container member-tile">
+    <div class="grid-x align-middle">
+        <section class="sprite-container cell small-3">
+            <img src="{{member.art.sprite}}" alt="{{member.name}} front default sprite">
+        </section>
+        <section class="member-info-container cell small-9">
+            <div class="member-nums grid-x align-justify">
+                <p class="roster-dex-num cell auto"># {{member.dexNum}}</p>
+                <p class="member-num cell small-1">{{member.memberNum}}</p>
+            </div>
+            <div class="pokemon-name-container">
+                <p class="member-name">{{capitalize member.name}}</p>
+            </div>
+            <div class="types-container grid-x">
+                {{#each member.types as |type|}}
+                <span class="type cell auto">{{capitalize type}}</span>
+                {{/each}}
+            </div>
+        </section>
+    </div>
+</div>

@@ -130,12 +130,12 @@ const games = [
         dexId: [16, 17, 18, 19, 20]
     },
     { 
-        name: 'Ultra-Sun',
+        name: 'Ultra Sun',
         versionGroup: 18,
         dexId: [21, 22, 23, 24, 25]
     },
     { 
-        name: 'Ultra-Moon',
+        name: 'Ultra Moon',
         versionGroup: 18,
         dexId: [21, 22, 23, 24, 25]
     },
