@@ -10,12 +10,11 @@ async function rosterEventHandler(event) {
 
     // check event target member-lock or member-tile click
     if (event.target.classList.includes('lock-icon')) {
-
+        console.log('lock icon clicked');
     } else if (event.target.classList.includes('member-tile')) {
-
+        console.log('member tile clicked');
     }
 }
-
 
 // function to lock/unlock member
 function toggleMemberLock(element) {

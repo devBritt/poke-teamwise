@@ -1,4 +1,5 @@
 const axios = require('axios');
+const gamesList = require('./poke-games');
 
 // functions to retrieve pokemon lists
 // get a list of pokemon by game
@@ -112,14 +113,21 @@ async function getAllMoves() {
 }
 
 // get pokemon details
-async function getPokemonDetails(pokemon, game) {
-    const pokemonDetails = { name: pokemon };
+async function getPokemonDetails(pokemon, game, memberNum, isFavorite) {
+    const pokemonDetails = {
+        name: pokemon,
+        memberNum: memberNum,
+        isFavorite: isFavorite
+    };
     try {
         // request details from PokeAPI pokemon endpoint
         const pokemonRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
         // request details from PokeAPI pokemon-species endpoint
         const speciesRes = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}/`);
     
+        // get pokedex number
+        pokemonDetails.dexNum = await getPokemonDexNum(speciesRes.data, game);
+        
         // get pokemon types
         pokemonDetails.types = getPokemonTypes(pokemonRes.data.types);
 
@@ -155,7 +163,7 @@ async function getPokemonDetails(pokemon, game) {
 
         // get pokemon's base stats
         pokemonDetails.stats = getStats(pokemonRes.data.stats);
-        
+        console.log(pokemonDetails);
         return pokemonDetails;
     } catch(err) {
         console.log(err);
@@ -164,6 +172,24 @@ async function getPokemonDetails(pokemon, game) {
 }
 
 // helper functions DO NOT EXPORT
+// get a pokemon's pokedex number from api response
+async function getPokemonDexNum(speciesData, gameName) {
+    const gameObj = gamesList.find(game => game.name.toLowerCase() === gameName.split('-').join(' '));
+    
+    try {
+        const promises = gameObj.dexId.map(async dex => {
+            const dexRes = axios.get(`https://pokeapi.co/api/v2/pokedex/${dex}`);
+            return dexRes;
+        });
+            
+        const dexRes = await Promise.all(promises);
+
+        return await getDexNum(dexRes, speciesData);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 // get a pokemon's type(s) from api response
 function getPokemonTypes(typesData) {
     const types = [];
@@ -229,6 +255,20 @@ function getFlavText(flavTextData, game) {
         }
     });
     return flavor_text;
+}
+
+// get a pokemon's pokedex number based on the chosen game
+function getDexNum(dexRes, pokemonData) {
+    const dexEntries = [];
+    dexRes.map(dex => {
+        dexEntries.push(...dex.data.pokemon_entries);
+    });
+
+    for (let i = 0; i < dexEntries.length; i++) {
+        if (dexEntries[i].pokemon_species.name === pokemonData.name) {
+            return dexEntries[i].entry_number;
+        }
+    }
 }
 
 module.exports = {

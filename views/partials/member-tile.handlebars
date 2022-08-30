@@ -1,21 +1,21 @@
-<div id="member-{{member.num}}" class="grid-container member-tile">
+<div id="member-{{member.memberNum}}" class="grid-container member-tile">
     <div class="grid-x align-middle">
         <section class="sprite-container cell small-3">
-            <img src="{{member.sprite}}" alt="{{member.name}} front default sprite">
+            <img src="{{member.art.sprite}}" alt="{{member.name}} front default sprite">
         </section>
         <section class="member-info-container cell small-9">
             <div class="member-nums grid-x align-justify">
                 <p class="roster-dex-num cell auto"># {{member.dexNum}}</p>
-                <p class="member-num cell small-1">{{member.num}}</p>
+                <p class="member-num cell small-1">{{member.memberNum}}</p>
             </div>
             <div class="pokemon-name-container">
                 <p class="member-name">{{member.name}}</p>
             </div>
             <div class="types-fave-container grid-x">
                 {{#each member.types as |type|}}
-                <span class="type cell auto">type.name</span>
+                <span class="type cell auto">{{type}}</span>
                 {{/each}}
-                {{#if member.favorite}}
+                {{#if member.isFavorite}}
                 <button class="fave-btn fave-btn-fill cell small-1">
                 </button>
                 {{else}}
