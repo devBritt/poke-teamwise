@@ -345,6 +345,14 @@ select {
     margin-bottom: calc(var(--spacing) * 2);
 }
 
+/* homepage styles */
+.hero {
+    justify-content: center;
+}
+.description {
+    justify-content: center;
+}
+
 /* MEDIA QUERIES */
 /* medium and up */
 @media screen and (min-width: 40em) {
