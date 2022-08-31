@@ -1,10 +1,25 @@
 async function generateCardHandler(event) {
     event.preventDefault();
 
-    const details = documnet.querySelector("#details-btn").value(); 
-    console.log(details);
+    // get selected pokemon name
+    const selectEl = document.querySelector('#pokemon-selector');
+    const pokemonName = selectEl.selectedOptions[0].value
+    //request pokemon details from pokemon API
+    const response = await fetch(`/api/pokemon/${pokemonName}`, {
+        method: 'post',
+        body: JSON.stringify({
+            dexId: 30
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const pokemonDetails = await response.json();
+    console.log(pokemonDetails); 
+
+    //use pokemon details to generate card 
 
 }
 
-document.querySelector("#details-btn").addEventListener("submit", generateCardHandler);
+document.querySelector("#member-form").addEventListener("submit", generateCardHandler);
 

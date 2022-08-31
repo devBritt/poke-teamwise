@@ -38,7 +38,7 @@ router.use("/", async (req, res) => {
 
     const memberDetails = members[0];
 
-    console.log(members);
+    // console.log(members);
     res.render('dashboard', { 
         loggedIn: req.session.loggedIn,
         games,
