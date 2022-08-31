@@ -351,9 +351,6 @@ select {
     margin-top: var(--spacing);
     margin-bottom: var(--spacing);
 }
-.hero-image {
-    
-}
 .description {
     text-align: center;
     margin-top: var(--spacing);
