@@ -23,3 +23,4 @@ async function generateCardHandler(event) {
 
 document.querySelector("#member-form").addEventListener("submit", generateCardHandler);
 
+

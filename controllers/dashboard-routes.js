@@ -29,6 +29,7 @@ router.use("/", async (req, res) => {
     //get starter team member details 
     const members = {};
 
+
     members.member1 = await getPokemonDetails(starterTeam[0], 30, 1);
     members.member2 = await getPokemonDetails(starterTeam[1], 30, 2);
     members.member3 = await getPokemonDetails(starterTeam[2], 30, 3);
@@ -39,6 +40,7 @@ router.use("/", async (req, res) => {
     const memberDetails = members[0];
 
     // console.log(members);
+
     res.render('dashboard', { 
         loggedIn: req.session.loggedIn,
         games,
