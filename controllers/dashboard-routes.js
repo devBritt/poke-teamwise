@@ -25,7 +25,7 @@ router.use("/", async (req, res) => {
         ],
     })
     //TODO use first team from list of teams to fill in member tiles
-
+    
     //get starter team member details 
     const members = {};
 

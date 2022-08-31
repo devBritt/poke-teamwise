@@ -17,7 +17,8 @@ async function generateCardHandler(event) {
     const pokemonDetails = await response.json();
     console.log(pokemonDetails); 
 
-    //use pokemon details to generate card 
+    //use pokemon details to generate card
+    
 
 }
 

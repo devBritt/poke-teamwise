@@ -94,27 +94,6 @@ select {
     font-weight: 700;
 }
 
-/* homepage styling */
-
-#get-started-btn {
-    background-color: var(--dark-red-hex);
-    padding-top: calc(var(--spacing)*1.2);
-    padding-bottom: calc(var(--spacing)*1.2);
-    margin-top: auto;
-    border-radius: 5px 5px 5px 5px;
-    font-weight: var(--bold-weight);
-}
-
-#homepage-window{
-
-    background-color: var(--light-gray-hex);
-    height: auto;
-}
-
-#homepage-text {
-    flex-wrap: wrap;
-}
-
 /* login/signup page styles */
 #login-page {
     height: 100%;
@@ -198,7 +177,7 @@ select {
     background-color: var(--primary-blue-hex);
     padding-top: calc(var(--spacing)*1.2);
     padding-bottom: calc(var(--spacing)*1.2);
-    margin-top: auto;
+    margin-top: 5%;
     border-radius: 5px 5px 5px 5px;
 }
 

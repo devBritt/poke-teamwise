@@ -1,4 +1,3 @@
-
 //function to fill team members drop down
 function getMembersList() {
     // get member elements
