@@ -71,8 +71,8 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // expects { team_id: 1, pokemon_name: 'goodra' }
     Member.create({
-        team_id: req.body.team_id,
-        pokemon_name: req.body.pokemon_name
+        team_id: req.body.teamId,
+        pokemon_name: req.body.memberName
     })
     .then(dbMemberData => res.json(dbMemberData))
     .catch(err => {

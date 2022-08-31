@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
         attributes: [
             'id',
             'user_id',
-            'team_name'
+            'team_name',
+            'game_id'
         ],
         order: [['created_at', 'DESC']],
         include: [
@@ -38,7 +39,8 @@ router.get('/:id', async (req, res) => {
         attributes: [
             'id',
             'user_id',
-            'team_name'
+            'team_name',
+            'game_id'
         ],
         order: [['created_at', 'DESC']],
         include: [
@@ -76,7 +78,8 @@ router.get('/by-user/:id', (req, res) => {
         attributes: [
             'id',
             'user_id',
-            'team_name'
+            'team_name',
+            'game_id'
         ],
         order: [['created_at', 'DESC']],
         include: [
@@ -109,9 +112,9 @@ router.get('/by-user/:id', (req, res) => {
 router.post('/', async (req, res) => {
     // expects { user_id: 1, team_name: 'team rocket' }
     Team.create({
-        // TODO: change to req.session.user_id once frontend is complete
-        user_id: req.body.user_id,
-        team_name: req.body.team_name
+        user_id: req.session.user_id,
+        team_name: req.body.teamName,
+        game_id: req.body.gameId
     }).then((dbTeamData) => {
         res.json(dbTeamData);
     }).catch(err => {

@@ -1,10 +1,18 @@
 <section id="generator-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
-        <h3 class="aside-title">Team Roster</h3>
+        <form id="save-team-form" class="grid-x align-bottom">
+                <section class="cell auto">
+                    <label for="team-name">Enter a Team Name</label>
+                    <input type="text" name="team-name" id="team-name" required>
+                </section>
+                <section class="save-btn-container cell medium-2 grid-x align-right">
+                    <button id="save-team-btn" type="submit" class="btn"><span class="material-symbols-outlined">save</span></button>
+                </section>
+            </form>
         {{#each members as |member|}}
-        <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
-            <section class="member-lock cell small-1">
-                <span class="lock-icon" class="material-symbols-outlined">lock</span>
+        <article id="slot-{{member.memberNum}}" class="roster-slot grid-x align-middle">
+            <section class="member-lock cell small-2">
+                <span id="lock-{{member.memberNum}}" class="material-symbols-outlined lock-icon">lock_open</span>
             </section>
             <section class="member-tile cell auto">
                 {{> member-tile member=member}}
@@ -13,7 +21,7 @@
         {{/each}}
     </aside>
     <section id="generator-center" class="cell auto">
-        <section id="generator-controls" class="grid-container fluid">
+        <section id="generator-controls" class="grid-container fluid align-bottom">
             <form id="generator-form" class="grid-x">
                 <section id="game-select-container" class="cell auto">
                     <label for="game-select">Game
@@ -28,7 +36,7 @@
                 <section id="type-select-container" class="cell auto">
                     <label for="type-select">Types (Optional)
                         <select name="type-select" id="type-select">
-                            <option value="">Start typing to search</option>
+                            <option value="" selected>Start typing to search</option>
                             {{#each types as |type|}}
                             <option value="{{format_select_options type}}">{{format_select_options type}}</option>
                             {{/each}}
@@ -38,23 +46,27 @@
                 <section id="move-select-container" class="cell auto">
                     <label for="move-select">Moves (Optional)
                         <select name="move-select" id="move-select">
-                            <option value="">Start typing to search</option>
+                            <option value="" selected>Start typing to search</option>
                             {{#each moves as |move|}}
                             <option value="{{format_select_options move}}">{{format_select_options move}}</option>
                             {{/each}}
                         </select>
                     </label>
                 </section>
-                <button type="submit" id="generate-btn" class="cell small-1 button">Go!</button>
+                <button type="submit" id="generate-btn" class="btn cell small-1">Go!</button>
             </form>
         </section>
         <section id="pokemon-details" class="grid-container fluid">
             <div class="grid-x">
-                <section id="pokemon-details-container">
-                    {{!-- TODO: add pokemon card --}}
+                <section id="pokemon-details-container cell medium-7">
+                    {{> pokemon-card}}
                 </section>
-                <section id="evolutions-container">
-                    {{!-- TODO: add pokemon evolution details --}}
+                <section id="evolutions-container cell medium-5">
+                    {{!-- {{#each cardPokemon.evoChain as |evolution|}}
+                    <div class="evolution-container">
+                        <img src="" alt="">
+                    </div>
+                    {{/each}} --}}
                 </section>
             </div>
         </section>

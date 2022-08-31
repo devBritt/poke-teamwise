@@ -14,6 +14,8 @@ router.use('/', async (req, res) => {
     members.member5 = await getPokemonDetails(starterTeam[4], 30, 5);
     members.member6 = await getPokemonDetails(starterTeam[5], 30, 6);
 
+    const cardPokemon = members.member1;
+
     // get all types
     const types = await getAllTypes();
 
@@ -25,7 +27,8 @@ router.use('/', async (req, res) => {
         games,
         types,
         moves,
-        members
+        members,
+        cardPokemon
     });
 });
 
