@@ -228,6 +228,17 @@ function updateTypes(memberTypes, elementToUpdate) {
 
     elementToUpdate.innerHTML = innerHTMLString;
 }
+// replace member tile types
+function updatePokemonCardTypes(memberTypes, elementToUpdate) {
+    let innerHTMLString = '';
+    
+    // replace elementToUpdate with new innerHTML
+    memberTypes.forEach(type => {
+        innerHTMLString = innerHTMLString + `<span class="pokemon-type cell auto">${capitalize(type)}</span>`;
+    });
+
+    elementToUpdate.innerHTML = innerHTMLString;
+}
 // remove formatting from Pokemon names
 function removeFormatting(text) {
     return text.split(' ').join('-').toLowerCase();
@@ -262,7 +273,7 @@ function updatePokemonCard(pokemon) {
 
     // update types
     const typesContainer = document.querySelector('#pokemon-types-container');
-    updateTypes(pokemon.types, typesContainer);
+    updatePokemonCardTypes(pokemon.types, typesContainer);
 
     // update flavor text
     document.querySelector('#flavor-text').innerHTML = pokemon.flavor_text;

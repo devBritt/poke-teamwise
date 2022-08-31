@@ -273,6 +273,61 @@ select {
     font-size: var(--s-font);
 }
 
+/* single pokemon details section */
+#pokemon-details {
+    margin-top: calc(var(--spacing) * 3);
+}
+
+/* pokemon card styles */
+.pokemon-card {
+    width: 60%;
+    height: auto;
+    margin: 0 auto;
+    padding: calc(var(--spacing) * 1.5);
+    border-radius: var(--card-border-radius);
+    border: calc(var(--spacing) * 2) solid var(--dark-red-hex);
+}
+.pokemon-card-art,
+.pokemon-types-container,
+.flavor-text-container {
+    margin-bottom: calc(var(--spacing) * 1.5);
+}
+#dex-num {
+    font-size: var(--m-font);
+    font-weight: var(--regular-weight);
+    color: var(--primary-red-hex);
+}
+#pokemon-name {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+}
+#official-art-card {
+    max-width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.pokemon-type {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+    text-align: center;
+}
+#flavor-text {
+    font-size: var(--s-font);
+    text-align: center;
+}
+.stats-container {
+    margin-left: 15%;
+}
+.stat-name {
+    margin-bottom: calc(var(--spacing) * 1.5);
+    font-size: var(--s-font);
+    color: var(--gray-hex);
+}
+.stat {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+}
+
 /* MEDIA QUERIES */
 /* medium and up */
 @media screen and (min-width: 40em) {
