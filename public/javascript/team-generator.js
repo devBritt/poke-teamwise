@@ -8,19 +8,19 @@ async function formEventHandler(event) {
     event.preventDefault();
 
     // get game, type, move input from elements
-    const gameId = document.querySelector('#game-select').selectedOptions[0].value;
+    let gameId = document.querySelector('#game-select').selectedOptions[0].value;
+    gameId = gameId.split(',')[0];
     const type = document.querySelector('#type-select').selectedOptions[0].value;
     const move = document.querySelector('#move-select').selectedOptions[0].value;
 
     // get filtered results
     const pokemonList = await getPokemonList(gameId, type, move);
-
+    
     // get n random pokemon from list
     // TODO: update 6 to be based on unlocked pokemon count
     const randomPicks = getRandomPokemon(pokemonList, 6);
-    
     // update member tiles
-    getTeamDetails(randomPicks, gameId);
+    await getTeamDetails(randomPicks, gameId);
 }
 // on team save submit
 async function saveTeamEventHandler(event) {
@@ -65,7 +65,7 @@ async function membersEventHandler(event) {
     const pokemonDetails = await getDetails(removeFormatting(name), gameId);
     console.log(pokemonDetails);
     // use pokemonDetails to update pokemon card
-    updatePokemonCard(pokemonDetails, gameId);
+    updatePokemonCard(pokemonDetails);
 }
 // on lock button click
 async function locksEventHandler(event) {
@@ -99,7 +99,7 @@ async function getPokemonList(game, type, move) {
         headers: { 'Content-Type': 'application/json'}
     });
 
-    return response.json();
+    return await response.json();
 }
 // save team to DB
 async function saveTeam(teamName, gameId) {
@@ -177,7 +177,7 @@ async function getTeamDetails(newTeamArr, gameId) {
     const membersDetails = [];
     // get member name html element
     const currentMemberNames = Array.from(document.querySelectorAll('.member-name'));
-
+    console.log(gameId);
     for (let i = 0; i < newTeamArr.length; i++) {
         let inUse = false;
         const newMember = newTeamArr[i];
@@ -264,7 +264,7 @@ function updatePokemonCard(pokemon) {
     // update dex num
     document.querySelector('#dex-num').innerHTML = '#' + pokemon.dexNum;
     // update name
-    document.querySelector('#pokemon-name').innerHTML = formatPokemonName(pokemon.name);
+    document.querySelector('#card-name').innerHTML = formatPokemonName(pokemon.name);
 
     // update card art
     const pokemonImg = document.querySelector('#official-art-card');

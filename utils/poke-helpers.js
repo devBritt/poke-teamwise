@@ -221,7 +221,7 @@ async function getEvoChain(chain) {
     // add base species
     evoChain.push({
         name: chain.species.name,
-        art_url: await pokemonRes.data.sprites.other.home.front_default
+        art_url: await pokemonRes.data.sprites.other['official-artwork'].front_default
     });
 
     // add second and third evolutions, including different evolutions (wurmple -> silcoon -> beautifly OR wurmple -> cascoon -> dustox)
@@ -232,7 +232,7 @@ async function getEvoChain(chain) {
         // add second evolution
         evoChain.push({
             name: evo1.species.name,
-            art_url: await pokemonRes.data.sprites.other.home.front_default
+            art_url: await pokemonRes.data.sprites.other['official-artwork'].front_default
         });
         // add third evolution
         for (let j = 0; j < evo1.evolves_to.length; j++) {
@@ -242,7 +242,7 @@ async function getEvoChain(chain) {
             // add second evolution
             evoChain.push({
                 name: evo2.species.name,
-                art_url: await pokemonRes.data.sprites.other.home.front_default
+                art_url: await pokemonRes.data.sprites.other['official-artwork'].front_default
             });
         }
     }

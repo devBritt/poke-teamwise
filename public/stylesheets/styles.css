@@ -295,11 +295,12 @@ select {
 #dex-num {
     font-size: var(--m-font);
     font-weight: var(--regular-weight);
-    color: var(--primary-red-hex);
+    color: var(--primary-yellow-hex);
 }
-#pokemon-name {
+.pokemon-name {
     font-size: var(--m-font);
     font-weight: var(--bold-weight);
+    text-align: center;
 }
 #official-art-card {
     max-width: 70%;
@@ -316,7 +317,7 @@ select {
     text-align: center;
 }
 .stats-container {
-    margin-left: 15%;
+    margin-left: 12%;
 }
 .stat-name {
     margin-bottom: calc(var(--spacing) * 1.5);
@@ -326,6 +327,22 @@ select {
 .stat {
     font-size: var(--m-font);
     font-weight: var(--bold-weight);
+}
+
+/* evolution chain styles */
+.evolution-container {
+    width: 25%;
+}
+.evo-art {
+    margin: 0 auto;
+}
+.evo-arrow {
+    width: 25%;
+    font-size: 36px;
+    text-align: center;
+    color: var(--primary-yellow-hex);
+    margin-top: var(--spacing);
+    margin-bottom: calc(var(--spacing) * 2);
 }
 
 /* MEDIA QUERIES */
