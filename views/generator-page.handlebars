@@ -28,7 +28,7 @@
                         <select id="game-select" name="game-select" required>
                             <option value="" selected>Pick a Game</option>
                             {{#each games as |game|}}
-                            <option value="{{game.dexId}}">{{game.name}}</option>
+                            <option value="{{#each game.dexId as |dexId|}}{{dexId}}{{#if @last}}{{else}},{{/if}}{{/each}}">{{game.name}}</option>
                             {{/each}}
                         </select>
                     </label>
@@ -58,15 +58,20 @@
         </section>
         <section id="pokemon-details" class="grid-container fluid">
             <div class="grid-x">
-                <section id="pokemon-details-container cell medium-7">
+                <section id="pokemon-details-container" class="cell medium-7">
                     {{> pokemon-card}}
                 </section>
-                <section id="evolutions-container cell medium-5">
-                    {{!-- {{#each cardPokemon.evoChain as |evolution|}}
+                <section id="evolutions-container" class="cell medium-5">
+                    {{#each cardPokemon.evolution_chain as |evolution|}}
                     <div class="evolution-container">
-                        <img src="" alt="">
+                        <img class="evo-art" src="{{evolution.art_url}}" alt="{{evolution.name}}">
+                        <p class="pokemon-name">{{capitalize evolution.name}}</p>
                     </div>
-                    {{/each}} --}}
+                    {{#if @last}}
+                    {{else}}
+                    <span class="material-symbols-outlined evo-arrow">arrow_downward</span>
+                    {{/if}}
+                    {{/each}}
                 </section>
             </div>
         </section>
