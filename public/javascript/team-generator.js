@@ -15,7 +15,7 @@ async function formEventHandler(event) {
     const randomPicks = getRandomPokemon(pokemonList, 6);
     
     // update member tiles
-    fillTileDetails(randomPicks, gameId);
+    getTeamDetails(randomPicks, gameId);
 }
 
 async function saveTeamEventHandler(event) {
@@ -53,12 +53,7 @@ async function saveTeamEventHandler(event) {
 //     }
 // }
 
-// function to lock/unlock member
-function toggleMemberLock(element) {
-
-}
-
-// function to get member details
+// get member details
 async function getDetails(pokemon, gameId) {
     const response = await fetch(`/api/pokemon/${pokemon}`, {
         method: 'POST',
@@ -70,14 +65,97 @@ async function getDetails(pokemon, gameId) {
 
     return response.json();
 }
+// display pokemon details
+async function updatePokemonCard(pokemon, element) {
+    // TODO: display selected pokemon details
+}
+// retrieve pokemon list
+async function getPokemonList(game, type, move) {
+    const response = await fetch('/api/pokemon', {
+        method: 'POST',
+        body: JSON.stringify({
+            dexId: game,
+            type: type,
+            move: move
+        }),
+        headers: { 'Content-Type': 'application/json'}
+    });
 
-// function to display member details
-async function displayDetails(pokemon, element) {
+    return response.json();
+}
+// save team to DB
+async function saveTeam(teamName, gameId) {
+    // use teamName and gameId to save team to db
+    const response = await fetch('/api/team', {
+        method: 'POST',
+        body: JSON.stringify({
+            teamName,
+            gameId
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (response.ok) {
+        console.log(`${teamName} saved successfully`);
+        const teamData = await response.json();
+        return teamData.id;
+    } else {
+        console.log(response.statusText);
+    }
+}
+// save member to DB
+async function saveMember(memberName, teamId) {
+    console.log(memberName, teamId);
 
+    // use teamName and gameId to save team to db
+    const response = await fetch('/api/member', {
+        method: 'POST',
+        body: JSON.stringify({
+            memberName,
+            teamId
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (response.ok) {
+        console.log(`${memberName} saved successfully`);
+    } else {
+        console.log(response.statusText);
+    }
 }
 
-// function to add details to member tiles
-async function fillTileDetails(newTeamArr, gameId) {
+// helper functions
+// pick random pokemon
+function getRandomPokemon(pokemonList, num) {
+    const randomPicks = [];
+    const pokeArr = Array.from(pokemonList);
+
+    for (let i = 0; i < num; i++) {
+        // get random index number
+        const randomIndex = Math.floor(Math.random() * (pokeArr.length - 1));
+
+        // add pokemon at random index to randomPicks array
+        randomPicks.push(pokeArr[randomIndex]);
+
+        // remove used pokemon from array
+        pokeArr.splice(randomIndex, 1);
+    }
+
+    return randomPicks;
+}
+// retreive current team members
+function getMembers() {
+    const membersArr = Array.from(document.querySelectorAll('.member-name'));
+    const formattedArr = [];
+
+    membersArr.forEach(name => {
+        formattedArr.push(removeFormatting(name.innerHTML));
+    });
+
+    return formattedArr;
+}
+// add details to member tiles
+async function getTeamDetails(newTeamArr, gameId) {
     const membersDetails = [];
     // get member name html element
     const currentMemberNames = Array.from(document.querySelectorAll('.member-name'));
@@ -104,101 +182,7 @@ async function fillTileDetails(newTeamArr, gameId) {
         updateMemberTile(member, index + 1);
     });
 }
-
-// function to retrieve pokemon list
-async function getPokemonList(game, type, move) {
-    const response = await fetch('/api/pokemon', {
-        method: 'POST',
-        body: JSON.stringify({
-            dexId: game,
-            type: type,
-            move: move
-        }),
-        headers: { 'Content-Type': 'application/json'}
-    });
-
-    return response.json();
-}
-
-// function to pick random pokemon
-function getRandomPokemon(pokemonList, num) {
-    const randomPicks = [];
-    const pokeArr = Array.from(pokemonList);
-
-    for (let i = 0; i < num; i++) {
-        // get random index number
-        const randomIndex = Math.floor(Math.random() * (pokeArr.length - 1));
-
-        // add pokemon at random index to randomPicks array
-        randomPicks.push(pokeArr[randomIndex]);
-
-        // remove used pokemon from array
-        pokeArr.splice(randomIndex, 1);
-    }
-
-    return randomPicks;
-}
-
-// function to create team
-async function buildTeam(game, type, move) {
-
-}
-
-// function to retreive current team members
-function getMembers() {
-    const membersArr = Array.from(document.querySelectorAll('.member-name'));
-    const formattedArr = [];
-
-    membersArr.forEach(name => {
-        formattedArr.push(removeFormatting(name.innerHTML));
-    });
-
-    return formattedArr;
-}
-
-// function to save to Team table
-async function saveTeam(teamName, gameId) {
-    // use teamName and gameId to save team to db
-    const response = await fetch('/api/team', {
-        method: 'POST',
-        body: JSON.stringify({
-            teamName,
-            gameId
-        }),
-        headers: { 'Content-Type': 'application/json' }
-    });
-    
-    if (response.ok) {
-        console.log(`${teamName} saved successfully`);
-        const teamData = await response.json();
-        return teamData.id;
-    } else {
-        console.log(response.statusText);
-    }
-}
-
-// function to save to Member table
-async function saveMember(memberName, teamId) {
-    console.log(memberName, teamId);
-
-    // use teamName and gameId to save team to db
-    const response = await fetch('/api/member', {
-        method: 'POST',
-        body: JSON.stringify({
-            memberName,
-            teamId
-        }),
-        headers: { 'Content-Type': 'application/json' }
-    });
-    
-    if (response.ok) {
-        console.log(`${memberName} saved successfully`);
-    } else {
-        console.log(response.statusText);
-    }
-}
-
-// helper functions
+// replace member tile details
 function updateMemberTile(memberDetails, memberNum) {
     // get element to be updated
     const artSection = document.querySelector(`#member-${memberNum}`).children[0];
@@ -214,7 +198,7 @@ function updateMemberTile(memberDetails, memberNum) {
     // update types
     updateTypes(memberDetails.types, detailsSection);
 }
-
+// replace member tile types
 function updateTypes(memberTypes, elementToUpdate) {
     let innerHTMLString = '';
     
@@ -225,15 +209,15 @@ function updateTypes(memberTypes, elementToUpdate) {
 
     elementToUpdate.children[2].innerHTML = innerHTMLString;
 }
-
+// remove formatting from Pokemon names
 function removeFormatting(text) {
     return text.split(' ').join('-').toLowerCase();
 }
-
+// capitalize first letter of words
 function capitalize(text) {
     return text.substring(0, 1).toUpperCase() + text.substring(1);
 }
-
+// format Pokemon names
 function formatPokemonName(text) {
     const splitText = text.split('-');
     let newString = [];
@@ -243,6 +227,10 @@ function formatPokemonName(text) {
     });
 
     return newString.join(' ');
+}
+// lock/unlock member
+function toggleMemberLock(element) {
+
 }
 
 document.querySelector('#generator-form').addEventListener('submit', formEventHandler);
