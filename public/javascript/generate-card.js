@@ -1,18 +1,26 @@
 async function generateCardHandler(event) {
     event.preventDefault();
 
-    // const details = documnet.querySelector("#details-btn").value(); 
+    // get selected pokemon name
+    const selectEl = document.querySelector('#pokemon-selector');
+    const pokemonName = selectEl.selectedOptions[0].value
+    //request pokemon details from pokemon API
+    const response = await fetch(`/api/pokemon/${pokemonName}`, {
+        method: 'post',
+        body: JSON.stringify({
+            dexId: 30
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+    const pokemonDetails = await response.json();
+    console.log(pokemonDetails); 
 
-    // const response = await fetch(`/api/pokemon/${id}`, {
-    //     method: 'post',
-    // });
-    
-    // if(response.ok) {
-    //     documnet.location.replace("/dashboard");
-    // } else {
-    //     alert(response.statusText);
-    // }
+    //use pokemon details to generate card 
+
 }
 
-document.querySelector("#details-btn").addEventListener("click", generateCardHandler);
+document.querySelector("#member-form").addEventListener("submit", generateCardHandler);
+
 
