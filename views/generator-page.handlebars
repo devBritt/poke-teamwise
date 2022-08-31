@@ -1,6 +1,16 @@
 <section id="generator-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
-        <h3 class="aside-title">Team Roster</h3>
+        <section class="grid-container">
+            <form id="save-team-form" class="grid-x align-bottom">
+                <section class="cell auto">
+                    <label for="team-name">Enter a Team Name</label>
+                    <input type="text" name="team-name" id="team-name">
+                </section>
+                <section class="save-btn-container cell medium-2 grid-x align-right">
+                    <button id="save-team-btn" type="submit" class="btn"><span class="material-symbols-outlined">save</span></button>
+                </section>
+            </form>
+        </section>
         {{#each members as |member|}}
         <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
             <section class="member-lock cell small-1">
@@ -13,7 +23,7 @@
         {{/each}}
     </aside>
     <section id="generator-center" class="cell auto">
-        <section id="generator-controls" class="grid-container fluid">
+        <section id="generator-controls" class="grid-container fluid align-bottom">
             <form id="generator-form" class="grid-x">
                 <section id="game-select-container" class="cell auto">
                     <label for="game-select">Game
@@ -45,7 +55,7 @@
                         </select>
                     </label>
                 </section>
-                <button type="submit" id="generate-btn" class="cell small-1 button">Go!</button>
+                <button type="submit" id="generate-btn" class="btn cell small-1">Go!</button>
             </form>
         </section>
         <section id="pokemon-details" class="grid-container fluid">

@@ -132,8 +132,8 @@ async function saveTeam() {
 // helper functions
 function updateMemberTile(memberDetails, memberNum) {
     // get element to be updated
-    const artSection = document.querySelector(`#member-${memberNum}`).children[0].children[0];
-    const detailsSection = document.querySelector(`#member-${memberNum}`).children[0].children[1];
+    const artSection = document.querySelector(`#member-${memberNum}`).children[0];
+    const detailsSection = document.querySelector(`#member-${memberNum}`).children[1];
     
     // use details from memberDetails to update sprite, dex number, name, and types
     // update sprite url
@@ -162,7 +162,7 @@ function capitalize(text) {
 }
 
 function formatPokemonName(text) {
-    const splitText = text.split(' ');
+    const splitText = text.split('-');
     let newString = [];
 
     splitText.forEach(string => {
