@@ -176,7 +176,7 @@ p {
 #members-window,
 #favorites-window {
     background-color: var(--light-gray-hex);
-    height: 100%;
+    height: auto;
 }
 #generator-controls {
     display: flex;
@@ -230,7 +230,7 @@ p {
     font-size: var(--s-font);
 }
 .member-name {
-    font-size: var(--m-font);
+    font-size: var(--s-font);
     font-weight: var(--bold-weight);
 }
 .type {
