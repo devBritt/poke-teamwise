@@ -34,9 +34,12 @@ async function saveTeamEventHandler(event) {
     const members = getMembers();
     
     // save team
-    await saveTeam(teamName, gameId);
-
+    const teamId = await saveTeam(teamName, gameId);
+    
     // save members
+    for (let i = 0; i < members.length; i++) {
+        await saveMember(members[i], teamId);
+    }
 }
 
 // async function rosterEventHandler(event) {
@@ -167,6 +170,29 @@ async function saveTeam(teamName, gameId) {
     
     if (response.ok) {
         console.log(`${teamName} saved successfully`);
+        const teamData = await response.json();
+        return teamData.id;
+    } else {
+        console.log(response.statusText);
+    }
+}
+
+// function to save to Member table
+async function saveMember(memberName, teamId) {
+    console.log(memberName, teamId);
+
+    // use teamName and gameId to save team to db
+    const response = await fetch('/api/member', {
+        method: 'POST',
+        body: JSON.stringify({
+            memberName,
+            teamId
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (response.ok) {
+        console.log(`${memberName} saved successfully`);
     } else {
         console.log(response.statusText);
     }
