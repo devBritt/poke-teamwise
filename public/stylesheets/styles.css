@@ -347,11 +347,15 @@ select {
 
 /* homepage styles */
 .hero {
-    justify-content: center;
+    text-align: center;
+}
+.hero-image {
+    background: url("public/assets/pokemon-banner.jpg");
 }
 .description {
-    justify-content: center;
+    text-align: center;
 }
+
 
 /* MEDIA QUERIES */
 /* medium and up */
