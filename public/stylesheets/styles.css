@@ -184,8 +184,7 @@ select {
 #generator-page {
     height: 100%;
 }
-#members-window,
-#favorites-window {
+#members-window {
     background-color: var(--light-gray-hex);
     height: auto;
 }
@@ -223,17 +222,16 @@ select {
     margin-bottom: 0;
     margin-left: var(--spacing);
 }
-.aside-title {
-    color: var(--white);
-    font-weight: 500;
-    font-size: var(--l-font);
-    margin: 10px auto;
-    text-align: center;
-}
+
 
 /* roster tile styles */
+#members-window {
+    padding-right: calc(var(--spacing) * 2.5);
+    padding-bottom: calc(var(--spacing) * 2.5);
+    padding-left: calc(var(--spacing) * 2.5);
+}
 .roster-slot {
-    margin: .9375rem;
+    margin-bottom: calc(var(--spacing) * 2.5);
 }
 .lock-icon {
     color: var(--primary-blue-hex);
@@ -258,20 +256,20 @@ select {
 }
 .roster-dex-num {
     color: var(--primary-red-hex);
-    font-size: var(--xs-font);
+    font-size: var(--s-font);
     font-weight: var(--medium-weight);
 }
 .member-num {
     color: var(--light-gray-hex);
-    font-size: var(--xs-font);
+    font-size: var(--s-font);
 }
 .member-name {
-    font-size: var(--s-font);
+    font-size: var(--m-font);
     font-weight: var(--bold-weight);
 }
 .type {
     color: var(--gray-hex);
-    font-size: var(--xs-font);
+    font-size: var(--s-font);
 }
 
 /* MEDIA QUERIES */
