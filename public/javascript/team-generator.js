@@ -1,3 +1,4 @@
+// event handlers
 async function formEventHandler(event) {
     event.preventDefault();
 
@@ -15,7 +16,28 @@ async function formEventHandler(event) {
     
     // update member tiles
     fillTileDetails(randomPicks, gameId);
-}   
+}
+
+async function saveTeamEventHandler(event) {
+    event.preventDefault();
+
+    // get game
+    let gameId;
+    if (document.querySelector('#game-select').selectedOptions[0].value === '') {
+        gameId = 30;
+    } else {
+        gameId = document.querySelector('#game-select').selectedOptions[0].value;
+    }
+    // get team name
+    const teamName = document.querySelector('#team-name').value;
+    // get team members
+    const members = getMembers();
+    
+    // save team
+    await saveTeam(teamName, gameId);
+
+    // save members
+}
 
 // async function rosterEventHandler(event) {
 //     event.preventDefault();
@@ -121,12 +143,33 @@ async function buildTeam(game, type, move) {
 
 // function to retreive current team members
 function getMembers() {
+    const membersArr = Array.from(document.querySelectorAll('.member-name'));
+    const formattedArr = [];
 
+    membersArr.forEach(name => {
+        formattedArr.push(removeFormatting(name.innerHTML));
+    });
+
+    return formattedArr;
 }
 
 // function to save to Team table
-async function saveTeam() {
-
+async function saveTeam(teamName, gameId) {
+    // use teamName and gameId to save team to db
+    const response = await fetch('/api/team', {
+        method: 'POST',
+        body: JSON.stringify({
+            teamName,
+            gameId
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (response.ok) {
+        console.log(`${teamName} saved successfully`);
+    } else {
+        console.log(response.statusText);
+    }
 }
 
 // helper functions
@@ -157,6 +200,10 @@ function updateTypes(memberTypes, elementToUpdate) {
     elementToUpdate.children[2].innerHTML = innerHTMLString;
 }
 
+function removeFormatting(text) {
+    return text.split(' ').join('-').toLowerCase();
+}
+
 function capitalize(text) {
     return text.substring(0, 1).toUpperCase() + text.substring(1);
 }
@@ -173,3 +220,4 @@ function formatPokemonName(text) {
 }
 
 document.querySelector('#generator-form').addEventListener('submit', formEventHandler);
+document.querySelector('#save-team-form').addEventListener('submit', saveTeamEventHandler);
