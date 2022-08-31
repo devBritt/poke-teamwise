@@ -1,28 +1,46 @@
-<section id="pokemon-card">
-    <div class="card" style="width: auto;">
-        <div class="card-divider">
-            <div class="row">
-                <div id="dex" class="small -2 columns">Dex #</div>
-                <div id="name" class="small -2 columns">Pokemon Name</div>
-            </div>
-        </div>
-        <div class="img" src="public/javascript/generate-card.js"></div>
-        <div id="types" class="card-section">
-            <div class="small -2 columns">Type 1</div>
-            <div class="small -2 columns">Type 2</div>
-
-            <div id="stats" class="row">
-                <div class="medium-3 columns">HP</div>
-                <div class="medium-3 columns">Attack</div>
-                <div class="medium-3 columns">Sp. Attack</div>
-            </div>
-            <div id="stats" class="row">
-                <div class="medium-3 columns">Speed</div>
-                <div class="medium-3 columns">Defense</div>
-                <div class="medium-3 columns">Sp. Defense</div>
-            </div>
-
-        </div>
-    </div>
-    </div>
-</section>
+<article class="pokemon-card">
+    <p id="card-name" class="pokemon-name">{{capitalize cardPokemon.name}}</p>
+    <section class="pokemon-card-art grid-x align-center">
+        <img id="official-art-card" src="{{cardPokemon.art.official}}" alt="Official artwork for {{cardPokemon.name}}">
+    </section>
+    <section class="pokemon-card-details grid-container">
+        <section id="pokemon-types-container" class="pokemon-types-container grid-x align-spaced">
+            {{#each cardPokemon.types as |type|}}
+            <span class="pokemon-type cell auto">{{capitalize type}}</span>
+            {{/each}}
+        </section>
+        <section class="flavor-text-container">
+            <p id="flavor-text">{{cardPokemon.flavor_text}}</p>
+        </section>
+        <section class="stats-container grid-x align-center">
+            <section class="grid-x cell">
+                <div class="cell small-4">
+                    <p class="stat-name">HP</p>
+                    <p id="hp" class="stat">&emsp;{{cardPokemon.stats.hp}}</p>
+                </div>
+                <div class="cell small-4">
+                    <p class="stat-name">Attack</p>
+                    <p id="attack" class="stat">&emsp;{{cardPokemon.stats.attack}}</p>
+                </div>
+                <div class="cell small-4">
+                    <p class="stat-name">Defense</p>
+                    <p id="defense" class="stat">&emsp;{{cardPokemon.stats.defense}}</p>
+                </div>
+            </section>
+            <section class="grid-x cell">
+                <div class="cell small-4">
+                    <p class="stat-name">Speed</p>
+                    <p id="speed" class="stat">&emsp;{{cardPokemon.stats.speed}}</p>
+                </div>
+                <div class="cell small-4">
+                    <p class="stat-name">Sp. Attack</p>
+                    <p id="specAtt" class="stat">&emsp;{{cardPokemon.stats.specAtt}}</p>
+                </div>
+                <div class="cell small-4">
+                    <p class="stat-name">Sp. Defense</p>
+                    <p id="specDef" class="stat">&emsp;{{cardPokemon.stats.specDef}}</p>
+                </div>
+            </section>
+        </section>
+    </section>
+</article>

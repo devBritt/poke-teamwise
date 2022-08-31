@@ -52,6 +52,28 @@ main {
 p {
     margin: 0;
 }
+input,
+select {
+    border-radius: var(--tile-border-radius);
+    margin: 0;
+}
+.btn {
+    display: inline-block;
+    padding: .85em 1em;
+    transition: background-color .25s ease-out,color .25s ease-out;
+    font-family: inherit;
+    font-size: .9rem;
+    -webkit-appearance: none;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--primary-blue-hex);
+    border-radius: var(--tile-border-radius);
+}
+.btn:hover {
+    background-color: var(--light-blue-hex);
+}
 
 /* main template styles */
 .navbar {
@@ -70,24 +92,6 @@ p {
 #nav-title {
     font-size: var(--s-font);
     font-weight: 700;
-}
-
-/* favorite button styles */
-.fave-btn-outline {
-    background-image: url('../assets/fave-outline.png');
-    background-repeat: no-repeat;
-    background-size: 21px 21px;
-}
-.fave-btn-outline:hover {
-    background-image: url('../assets/fave-outline-hover.png');
-}
-.fave-btn-fill {
-    background-image: url('../assets/fave-fill.png');
-    background-repeat: no-repeat;
-    background-size: 21px 21px;
-}
-.fave-btn-fill:hover {
-    background-image: url('../assets/fave-fill-hover.png');
 }
 
 /* login/signup page styles */
@@ -113,6 +117,13 @@ p {
 #signup-form button:hover,
 #login-form button:hover {
     background-color: var(--light-blue-hex);
+}
+#email-login,
+#email-signup,
+#password-login,
+#password-signup,
+#username-signup {
+    border-radius: var(--tile-border-radius);
 }
 
 /* dashboard styling */
@@ -173,10 +184,26 @@ p {
 #generator-page {
     height: 100%;
 }
-#members-window,
-#favorites-window {
+#members-window {
     background-color: var(--light-gray-hex);
-    height: 100%;
+    height: auto;
+}
+#save-team-form {
+    margin-top: calc(var(--spacing) * 2);
+    margin-bottom: calc(var(--spacing) * 3);
+}
+#team-name {
+    margin-bottom: 0;
+    border-radius: var(--tile-border-radius);
+}
+.save-btn-container {
+    padding-top: calc(var(--spacing) * 0.55);
+}
+#save-team-btn {
+    padding-right: calc(var(--spacing) * 0.5);
+    padding-left: calc(var(--spacing) * 0.5);
+    padding-top: calc(var(--spacing) * 0.65);
+    padding-bottom: calc(var(--spacing) * 0.35);
 }
 #generator-controls {
     display: flex;
@@ -191,30 +218,38 @@ p {
     margin-right: var(--spacing);
 }
 #generate-btn {
-    background-color: var(--primary-blue-hex);
-    padding-top: calc(var(--spacing)*1.2);
-    padding-bottom: calc(var(--spacing)*1.2);
     margin-top: auto;
-}
-#generate-btn:hover {
-    background-color: var(--light-blue-hex);
-}
-.aside-title {
-    color: var(--white);
-    font-weight: 500;
-    font-size: var(--l-font);
-    margin: 10px auto;
-    text-align: center;
+    margin-bottom: 0;
+    margin-left: var(--spacing);
 }
 
+
 /* roster tile styles */
+#members-window {
+    padding-right: calc(var(--spacing) * 2.5);
+    padding-bottom: calc(var(--spacing) * 2.5);
+    padding-left: calc(var(--spacing) * 2.5);
+}
+.roster-slot {
+    margin-bottom: calc(var(--spacing) * 2.5);
+}
+.lock-icon {
+    color: var(--primary-blue-hex);
+    font-size: 36px;
+    cursor: pointer;
+}
+.lock-icon:hover {
+    color: var(--light-blue-hex);
+}
 .member-tile {
     background-color: var(--white);
-    margin-right: calc(var(--spacing)*2);
-    margin-left: calc(var(--spacing)*2);
-    margin-bottom: var(--spacing);
-    padding: var(--spacing);
     border-radius: var(--tile-border-radius);
+    cursor: pointer;
+}
+.member-info-container {
+    padding-top: calc(var(--spacing) * 1);
+    padding-right: calc(var(--spacing) * 1);
+    padding-bottom: calc(var(--spacing) * 1);
 }
 .member-nums,
 .pokemon-name-container {
@@ -236,6 +271,78 @@ p {
 .type {
     color: var(--gray-hex);
     font-size: var(--s-font);
+}
+
+/* single pokemon details section */
+#pokemon-details {
+    margin-top: calc(var(--spacing) * 3);
+}
+
+/* pokemon card styles */
+.pokemon-card {
+    width: 60%;
+    height: auto;
+    margin: 0 auto;
+    padding: calc(var(--spacing) * 1.5);
+    border-radius: var(--card-border-radius);
+    border: calc(var(--spacing) * 2) solid var(--dark-red-hex);
+}
+.pokemon-card-art,
+.pokemon-types-container,
+.flavor-text-container {
+    margin-bottom: calc(var(--spacing) * 1.5);
+}
+#dex-num {
+    font-size: var(--m-font);
+    font-weight: var(--regular-weight);
+    color: var(--primary-yellow-hex);
+}
+.pokemon-name {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+    text-align: center;
+}
+#official-art-card {
+    max-width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.pokemon-type {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+    text-align: center;
+}
+#flavor-text {
+    font-size: var(--s-font);
+    text-align: center;
+}
+.stats-container {
+    margin-left: 12%;
+}
+.stat-name {
+    margin-bottom: calc(var(--spacing) * 1.5);
+    font-size: var(--s-font);
+    color: var(--gray-hex);
+}
+.stat {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+}
+
+/* evolution chain styles */
+.evolution-container {
+    width: 25%;
+}
+.evo-art {
+    margin: 0 auto;
+}
+.evo-arrow {
+    width: 25%;
+    font-size: 36px;
+    text-align: center;
+    color: var(--primary-yellow-hex);
+    margin-top: var(--spacing);
+    margin-bottom: calc(var(--spacing) * 2);
 }
 
 /* MEDIA QUERIES */
