@@ -1,4 +1,4 @@
-const Favorites = require('./Favorites');
+const Favorites = require('./favorites');
 const Member = require('./Member');
 const Team = require('./Team');
 const User = require('./User');

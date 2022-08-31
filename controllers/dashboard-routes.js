@@ -29,16 +29,16 @@ router.use("/", async (req, res) => {
     //get starter team member details 
     const members = {};
 
-    members.member1 = await getPokemonDetails(starterTeam[0], 'legends-arceus', 1);
-    members.member2 = await getPokemonDetails(starterTeam[1], 'legends-arceus', 2);
-    members.member3 = await getPokemonDetails(starterTeam[2], 'legends-arceus', 3);
-    members.member4 = await getPokemonDetails(starterTeam[3], 'legends-arceus', 4);
-    members.member5 = await getPokemonDetails(starterTeam[4], 'legends-arceus', 5);
-    members.member6 = await getPokemonDetails(starterTeam[5], 'legends-arceus', 6);
+    members.member1 = await getPokemonDetails(starterTeam[0], 30, 1);
+    members.member2 = await getPokemonDetails(starterTeam[1], 30, 2);
+    members.member3 = await getPokemonDetails(starterTeam[2], 30, 3);
+    members.member4 = await getPokemonDetails(starterTeam[3], 30, 4);
+    members.member5 = await getPokemonDetails(starterTeam[4], 30, 5);
+    members.member6 = await getPokemonDetails(starterTeam[5], 30, 6);
 
     const memberDetails = members[0];
 
-
+    console.log(members);
     res.render('dashboard', { 
         loggedIn: req.session.loggedIn,
         games,
