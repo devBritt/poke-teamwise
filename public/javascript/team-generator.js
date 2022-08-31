@@ -63,9 +63,11 @@ async function membersEventHandler(event) {
 
     // get details for clicked pokemon
     const pokemonDetails = await getDetails(removeFormatting(name), gameId);
-    console.log(pokemonDetails);
+    
     // use pokemonDetails to update pokemon card
     updatePokemonCard(pokemonDetails);
+    // use details to update evolution chain
+    updateEvoChain(pokemonDetails.evolution_chain);
 }
 // on lock button click
 async function locksEventHandler(event) {
@@ -123,8 +125,6 @@ async function saveTeam(teamName, gameId) {
 }
 // save member to DB
 async function saveMember(memberName, teamId) {
-    console.log(memberName, teamId);
-
     // use teamName and gameId to save team to db
     const response = await fetch('/api/member', {
         method: 'POST',
@@ -177,7 +177,7 @@ async function getTeamDetails(newTeamArr, gameId) {
     const membersDetails = [];
     // get member name html element
     const currentMemberNames = Array.from(document.querySelectorAll('.member-name'));
-    console.log(gameId);
+    
     for (let i = 0; i < newTeamArr.length; i++) {
         let inUse = false;
         const newMember = newTeamArr[i];
@@ -260,9 +260,6 @@ function formatPokemonName(text) {
 }
 // display pokemon details
 function updatePokemonCard(pokemon) {
-    // update card header
-    // update dex num
-    document.querySelector('#dex-num').innerHTML = '#' + pokemon.dexNum;
     // update name
     document.querySelector('#card-name').innerHTML = formatPokemonName(pokemon.name);
 
@@ -285,6 +282,55 @@ function updatePokemonCard(pokemon) {
     document.querySelector('#speed').innerHTML = pokemon.stats.speed;
     document.querySelector('#specAtt').innerHTML = pokemon.stats.specAtt;
     document.querySelector('#specDef').innerHTML = pokemon.stats.specDef;
+}
+// display pokemon evolution chain
+function updateEvoChain(evolution_chain) {
+    const evolutionsContainer = document.querySelector('#evolutions-container');
+    // clear evolutions container
+    evolutionsContainer.innerHTML = '';
+
+    for (let i = 0; i < evolution_chain.length; i++) {
+        // create div element for evolution container
+        const divEl = document.createElement('div');
+        // create img element for evolution art
+        const imgEl = document.createElement('img');
+        // create p element for evolution name
+        const pEl = document.createElement('p');
+        
+        // add classes to elements
+        divEl.className = 'evolution-container';
+        imgEl.className = 'evo-art';
+        pEl.className = 'pokemon-name';
+
+        // add img src and alt
+        imgEl.src = evolution_chain[i].art_url;
+        imgEl.alt = `Official artwork for ${evolution_chain[i].name}`;
+
+        // add innerHTML to p element
+        pEl.innerHTML = formatPokemonName(evolution_chain[i].name);
+
+        // append imgEl and pEl to divEl
+        divEl.appendChild(imgEl);
+        divEl.appendChild(pEl);
+
+        // append divEl to evolutionsContainer
+        evolutionsContainer.appendChild(divEl);
+        
+        // create span for arrow (except on last evo)
+        if (i < evolution_chain.length - 1) {
+            // create span element for evo arrow
+            const spanEl = document.createElement('span');
+
+            // add classes to spanEl
+            spanEl.className = 'material-symbols-outlined evo-arrow';
+
+            // add innerHTML to spanEl
+            spanEl.innerHTML = 'arrow_downward';
+
+            // append spanEl to evolutionsContainer
+            evolutionsContainer.appendChild(spanEl);
+        }
+    };
 }
 // lock/unlock member
 function toggleMemberLock(element) {
