@@ -1,19 +1,19 @@
 <article class="pokemon-card">
     <section class="pokemon-card-head grid-x align-justify">
-        <p class="dex-num"># {{cardPokemon.dexNum}}</p>
-        <p class="pokemon-name">{{capitalize cardPokemon.name}}</p>
+        <p id="dex-num"># {{cardPokemon.dexNum}}</p>
+        <p id="pokemon-name">{{capitalize cardPokemon.name}}</p>
     </section>
     <section class="pokemon-card-art">
-        <img src="{{cardPokemon.art.official}}" alt="Official artwork for {{cardPokemon.name}}">
+        <img id="official-art-card" src="{{cardPokemon.art.official}}" alt="Official artwork for {{cardPokemon.name}}">
     </section>
     <section class="pokemon-card-details grid-container">
-        <section class="pokemon-types-container grid-x align-spaced">
+        <section id="pokemon-types-container" class="grid-x align-spaced">
             {{#each cardPokemon.types as |type|}}
             <span class="pokemon-type cell auto">{{capitalize type}}</span>
             {{/each}}
         </section>
         <section class="flavor-text-container">
-            <p class="flavor-text">{{cardPokemon.flavor_text}}</p>
+            <p id="flavor-text">{{cardPokemon.flavor_text}}</p>
         </section>
         <section class="stats-container grid-x">
             <div class="stat cell-4">

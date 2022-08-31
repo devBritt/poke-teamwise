@@ -1,4 +1,9 @@
+// DOM elements for event listeners
+const memberTiles = Array.from(document.querySelectorAll('.member-tile'));
+const memberLocks = Array.from(document.querySelectorAll('.member-lock'));
+
 // event handlers
+// on generator form submit
 async function formEventHandler(event) {
     event.preventDefault();
 
@@ -17,7 +22,7 @@ async function formEventHandler(event) {
     // update member tiles
     getTeamDetails(randomPicks, gameId);
 }
-
+// on team save submit
 async function saveTeamEventHandler(event) {
     event.preventDefault();
 
@@ -41,18 +46,35 @@ async function saveTeamEventHandler(event) {
         await saveMember(members[i], teamId);
     }
 }
+// on member tile click
+async function membersEventHandler(event) {
+    event.preventDefault();
+    
+    // get game id
+    let gameId;
+    if (document.querySelector('#game-select').selectedOptions[0].value === '') {
+        gameId = 30;
+    } else {
+        gameId = document.querySelector('#game-select').selectedOptions[0].value;
+    }
+    
+    // use event.currentTarget to get pokemon name from target tile
+    const name = event.currentTarget.children[1].children[1].children[0].innerHTML;
 
-// async function rosterEventHandler(event) {
-//     event.preventDefault();
+    // get details for clicked pokemon
+    const pokemonDetails = await getDetails(removeFormatting(name), gameId);
+    console.log(pokemonDetails);
+    // use pokemonDetails to update pokemon card
+    updatePokemonCard(pokemonDetails, gameId);
+}
+// on lock button click
+async function locksEventHandler(event) {
+    event.preventDefault();
 
-//     // check event target member-lock or member-tile click
-//     if (event.target.classList.includes('lock-icon')) {
-//         console.log('lock icon clicked');
-//     } else if (event.target.classList.includes('member-tile')) {
-//         console.log('member tile clicked');
-//     }
-// }
+    // TODO: implement locking feature
+}
 
+// API calls
 // get member details
 async function getDetails(pokemon, gameId) {
     const response = await fetch(`/api/pokemon/${pokemon}`, {
@@ -64,10 +86,6 @@ async function getDetails(pokemon, gameId) {
     });
 
     return response.json();
-}
-// display pokemon details
-async function updatePokemonCard(pokemon, element) {
-    // TODO: display selected pokemon details
 }
 // retrieve pokemon list
 async function getPokemonList(game, type, move) {
@@ -196,7 +214,8 @@ function updateMemberTile(memberDetails, memberNum) {
     // update name
     detailsSection.children[1].children[0].innerHTML = formatPokemonName(memberDetails.name);
     // update types
-    updateTypes(memberDetails.types, detailsSection);
+    const typesContainer = detailsSection.children[2];
+    updateTypes(memberDetails.types, typesContainer);
 }
 // replace member tile types
 function updateTypes(memberTypes, elementToUpdate) {
@@ -207,7 +226,7 @@ function updateTypes(memberTypes, elementToUpdate) {
         innerHTMLString = innerHTMLString + `<span class="type cell auto">${capitalize(type)}</span>`;
     });
 
-    elementToUpdate.children[2].innerHTML = innerHTMLString;
+    elementToUpdate.innerHTML = innerHTMLString;
 }
 // remove formatting from Pokemon names
 function removeFormatting(text) {
@@ -228,6 +247,34 @@ function formatPokemonName(text) {
 
     return newString.join(' ');
 }
+// display pokemon details
+function updatePokemonCard(pokemon) {
+    // update card header
+    // update dex num
+    document.querySelector('#dex-num').innerHTML = '#' + pokemon.dexNum;
+    // update name
+    document.querySelector('#pokemon-name').innerHTML = formatPokemonName(pokemon.name);
+
+    // update card art
+    const pokemonImg = document.querySelector('#official-art-card');
+    pokemonImg.src = pokemon.art.official;
+    pokemonImg.alt = `Official art for ${pokemon.name}`;
+
+    // update types
+    const typesContainer = document.querySelector('#pokemon-types-container');
+    updateTypes(pokemon.types, typesContainer);
+
+    // update flavor text
+    document.querySelector('#flavor-text').innerHTML = pokemon.flavor_text;
+
+    // update stats
+    document.querySelector('#hp').innerHTML = pokemon.stats.hp;
+    document.querySelector('#attack').innerHTML = pokemon.stats.attack;
+    document.querySelector('#defense').innerHTML = pokemon.stats.defense;
+    document.querySelector('#speed').innerHTML = pokemon.stats.speed;
+    document.querySelector('#specAtt').innerHTML = pokemon.stats.specAtt;
+    document.querySelector('#specDef').innerHTML = pokemon.stats.specDef;
+}
 // lock/unlock member
 function toggleMemberLock(element) {
 
@@ -235,3 +282,11 @@ function toggleMemberLock(element) {
 
 document.querySelector('#generator-form').addEventListener('submit', formEventHandler);
 document.querySelector('#save-team-form').addEventListener('submit', saveTeamEventHandler);
+// create event listener for each member tile
+for (let i = 0; i < memberTiles.length; i++) {
+    memberTiles[i].children[0].addEventListener('click', membersEventHandler);
+}
+// create event listener for each member lock
+for (let j = 0; j < memberTiles.length; j++) {
+    memberLocks[j].children[0].addEventListener('click', locksEventHandler);
+}
