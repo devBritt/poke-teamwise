@@ -232,13 +232,25 @@ select {
 }
 
 /* roster tile styles */
+.roster-slot {
+    margin: .9375rem;
+}
+.lock-icon {
+    color: var(--primary-blue-hex);
+    font-size: 36px;
+    cursor: pointer;
+}
+.lock-icon:hover {
+    color: var(--light-blue-hex);
+}
 .member-tile {
     background-color: var(--white);
-    margin-right: calc(var(--spacing)*2);
-    margin-left: calc(var(--spacing)*2);
-    margin-bottom: var(--spacing);
-    padding: var(--spacing);
     border-radius: var(--tile-border-radius);
+}
+.member-info-container {
+    padding-top: calc(var(--spacing) * 1);
+    padding-right: calc(var(--spacing) * 1);
+    padding-bottom: calc(var(--spacing) * 1);
 }
 .member-nums,
 .pokemon-name-container {
@@ -246,12 +258,12 @@ select {
 }
 .roster-dex-num {
     color: var(--primary-red-hex);
-    font-size: var(--s-font);
+    font-size: var(--xs-font);
     font-weight: var(--medium-weight);
 }
 .member-num {
     color: var(--light-gray-hex);
-    font-size: var(--s-font);
+    font-size: var(--xs-font);
 }
 .member-name {
     font-size: var(--s-font);
@@ -259,7 +271,7 @@ select {
 }
 .type {
     color: var(--gray-hex);
-    font-size: var(--s-font);
+    font-size: var(--xs-font);
 }
 
 /* MEDIA QUERIES */
