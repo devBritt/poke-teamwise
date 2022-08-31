@@ -136,7 +136,7 @@ async function getPokemonDetails(pokemon, gameId, memberNum) {
             const evoChainRes = await axios.get(speciesRes.data.evolution_chain.url);
             const chain = evoChainRes.data.chain;
     
-            pokemonDetails.evolution_chain = getEvoChain(chain);
+            pokemonDetails.evolution_chain = await getEvoChain(chain);
         } 
         // check if pokemon has a base species
         else if (speciesRes.data.evolves_from_species) {
@@ -162,7 +162,7 @@ async function getPokemonDetails(pokemon, gameId, memberNum) {
 
         // get pokemon's base stats
         pokemonDetails.stats = getStats(pokemonRes.data.stats);
-        
+        console.log(pokemonDetails);
         return pokemonDetails;
     } catch(err) {
         console.log(err);
@@ -212,20 +212,38 @@ function getPokemonTypes(typesData) {
 }
 
 // get a pokemon's evolution chain from api response
-function getEvoChain(chain) {
+async function getEvoChain(chain) {
     const evoChain = [];
 
+    // get art url for first evo
+    const pokemonRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${chain.species.name}`);
+    
     // add base species
-    evoChain.push(chain.species.name);
+    evoChain.push({
+        name: chain.species.name,
+        art_url: await pokemonRes.data.sprites.other.home.front_default
+    });
 
     // add second and third evolutions, including different evolutions (wurmple -> silcoon -> beautifly OR wurmple -> cascoon -> dustox)
     for (let i = 0; i < chain.evolves_to.length; i++) {
         const evo1 = chain.evolves_to[i];
+        // get art url for second evo
+        const pokemonRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evo1.species.name}`);
         // add second evolution
-        evoChain.push(evo1.species.name);
+        evoChain.push({
+            name: evo1.species.name,
+            art_url: await pokemonRes.data.sprites.other.home.front_default
+        });
         // add third evolution
         for (let j = 0; j < evo1.evolves_to.length; j++) {
-            evoChain.push(evo1.evolves_to[j].species.name);
+            const evo2 = evo1.evolves_to[j];
+            // get art url for second evo
+            const pokemonRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evo2.species.name}`);
+            // add second evolution
+            evoChain.push({
+                name: evo2.species.name,
+                art_url: await pokemonRes.data.sprites.other.home.front_default
+            });
         }
     }
 
