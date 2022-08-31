@@ -24,6 +24,10 @@ Team.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    game_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
   },
   {
     sequelize,
