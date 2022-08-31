@@ -1,31 +1,28 @@
 <section id="teams-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
-        <section class="grid-container fluid">
-            <section class="grid-x" id="aside-title">
-                <form class="grid-x">
-                    <section class="cell auto">
-                        <label id="team-title"> Team Name
-                            <select id="team-selector">
-                                <option value="">Pick a Team</option>
-                                {{#each teams as |team|}}
-                                <option value="{{team.id}}">{{team.team_name}}</option>
-                                {{/each}}
-                            </select>
-                            <aside id="members-window" class="cell medium-3">
-                                <h3 class="aside-title">Team Roster</h3>
-                                {{#each members as |member|}}
-                                <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
-                                    <section class="member-tile cell auto">
-                                        {{> member-tile member=member}}
-                                    </section>
-                                </article>
-                                {{/each}}
-                            </aside 
-                        </label>
-                    </section>
-                </form>
-            </section>
-        </section>
+        <div class="grid-container fluid">
+            <form class="grid-x">
+                <section class="cell auto">
+                    <label id="team-title"> Team Name
+                        <select id="team-selector">
+                            <option value="">Pick a Team</option>
+                            {{#each teams as |team|}}
+                            <option value="{{team.id}}">{{team.team_name}}</option>
+                            {{/each}}
+                        </select>
+                    </label>
+                </section>
+            </form>
+        </div>
+        <aside id="members-window">
+            {{#each members as |member|}}
+            <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
+                <section class="member-tile cell auto">
+                    {{> member-tile member=member}}
+                </section>
+            </article>
+            {{/each}}
+        </aside>
     </aside>
     <section class="float-center" id="member-controls">
         <form id="member-form" class="grid-x">
@@ -42,4 +39,5 @@
     </section>
 </section>
 
-
+<script src="/javascript/dashboard.js"></script>
+<script src="/javascript/generate-card.js"></script>
