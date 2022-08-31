@@ -1,7 +1,7 @@
 <section id="teams-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
         <div class="grid-container fluid">
-            <form class="grid-x">
+            <form class="grid-x" id="team-form">
                 <section class="cell auto">
                     <label id="team-title"> Team Name
                         <select id="team-selector">
@@ -11,9 +11,9 @@
                             {{/each}}
                         </select>
                     </label>
+                <button type="click" id="delete-btn" class="cell auto small-2 button">Delete Team</button>
                 </section>
             </form>
-            <button type="click" id="details-btn" class="cell auto small-2 button">Delete Team</button>
         </div>
         <aside id="members-window">
             {{#each members as |member|}}
