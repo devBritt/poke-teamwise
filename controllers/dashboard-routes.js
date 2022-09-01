@@ -23,27 +23,37 @@ router.get("/", async (req, res) => {
     })
     .then( async (dbTeamData) => {
         const teams = dbTeamData.map((team) => team.get({plain :true}))
-        //get members list
-        const members = teams[0].members
         
-        const membersDetails = {}
+        if (teams) {
+            //get members list
+            const members = teams[0].members
+            
+            const membersDetails = {}
 
-        membersDetails.member1 = await getPokemonDetails(members[0].pokemon_name, teams[0].game_id, 1);
-        membersDetails.member2 = await getPokemonDetails(members[1].pokemon_name, teams[0].game_id, 2);
-        membersDetails.member3 = await getPokemonDetails(members[2].pokemon_name, teams[0].game_id, 3);
-        membersDetails.member4 = await getPokemonDetails(members[3].pokemon_name, teams[0].game_id, 4);
-        membersDetails.member5 = await getPokemonDetails(members[4].pokemon_name, teams[0].game_id, 5);
-        membersDetails.member6 = await getPokemonDetails(members[5].pokemon_name, teams[0].game_id, 6);
+            membersDetails.member1 = await getPokemonDetails(members[0].pokemon_name, teams[0].game_id, 1);
+            membersDetails.member2 = await getPokemonDetails(members[1].pokemon_name, teams[0].game_id, 2);
+            membersDetails.member3 = await getPokemonDetails(members[2].pokemon_name, teams[0].game_id, 3);
+            membersDetails.member4 = await getPokemonDetails(members[3].pokemon_name, teams[0].game_id, 4);
+            membersDetails.member5 = await getPokemonDetails(members[4].pokemon_name, teams[0].game_id, 5);
+            membersDetails.member6 = await getPokemonDetails(members[5].pokemon_name, teams[0].game_id, 6);
 
-        //get first member to fill card
-        const cardPokemon = membersDetails.member1;
-        res.render('dashboard', { 
-            loggedIn: req.session.loggedIn,
-            membersDetails,
-            teams,
-            cardPokemon
-        });
-    })
+            //get first member to fill card
+            const cardPokemon = membersDetails.member1;
+            console.log(cardPokemon)
+            res.render('dashboard', { 
+                loggedIn: req.session.loggedIn,
+                hasTeams: true,
+                membersDetails,
+                teams,
+                cardPokemon
+            });
+        } else {
+            res.render('dashboard', {
+                loggedIn: req.session.loggedIn,
+                hasTeams: false
+            });
+        }
+    });
 });
 
 module.exports = router;
