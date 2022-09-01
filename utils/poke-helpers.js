@@ -159,7 +159,6 @@ async function getPokemonDetails(pokemon, gameId, memberNum) {
 
         // get pokemon's base stats
         pokemonDetails.stats = getStats(pokemonRes.data.stats);
-        console.log(pokemonDetails);
         return pokemonDetails;
     } catch(err) {
         console.log(err);

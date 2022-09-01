@@ -74,6 +74,9 @@ select {
 .btn:hover {
     background-color: var(--light-blue-hex);
 }
+.hide {
+    display: none;
+}
 
 /* main template styles */
 .navbar {
@@ -168,6 +171,7 @@ select {
 }
 
 #delete-btn {
+    padding-right: 10%;
     background-color: var(--primary-blue-hex);
     padding-top: calc(var(--spacing)*1.2);
     padding-bottom: calc(var(--spacing)*1.2);

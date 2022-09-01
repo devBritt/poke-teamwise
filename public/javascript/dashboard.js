@@ -85,7 +85,6 @@ function updatePokemonCardTypes(memberTypes, elementToUpdate) {
 // display pokemon details
 function updatePokemonCard(pokemon) {
     // update name
-    console.log(pokemon);
     document.querySelector('#card-name').innerHTML = formatName(pokemon.name);
 
     // update card art
@@ -201,8 +200,56 @@ function formatName(text) {
     return newString.join(' ');
 }
 
+async function switchTeam() {
+    
+    //get the team id
+    const teamId = document.querySelector('#team-selector').selectedOptions[0].value
+    
+    //get team
+    const teamRes = await fetch(`/api/team/${teamId}`, {
+        method: 'get'
+    })
+
+    const teamObj = await teamRes.json()
+
+    const gameId = teamObj[0].game_id
+
+    //get the team members 
+    const members = teamObj[0].members
+
+    //update member cards 
+    await getTeamDetails(members, gameId)
+    //update pokemon card
+}
+
+// add details to member tiles
+async function getTeamDetails(newTeamArr, gameId) {
+    const membersDetails = [];
+    // get member name html element
+    
+    for (let i = 0; i < newTeamArr.length; i++) {
+        const response = await getDetails(newTeamArr[i].pokemon_name, gameId);
+            
+        membersDetails.push(response);
+    }
+    
+    // update member tiles using membersDetails
+    membersDetails.forEach((member, index) => {
+        updateMemberTile(member, index + 1);
+    });
+
+    //update pokemon card
+    updatePokemonCard(membersDetails[0])
+
+    //update evolution chain
+    updateEvoChain(membersDetails[0].evolution_chain)
+}   
+
 // event listeners
 // create event listener for each member tile
 for (let i = 0; i < memberTiles.length; i++) {
     memberTiles[i].children[0].addEventListener('click', membersEventHandler);
 }
+
+
+// document.querySelector('#').addEventListener("")

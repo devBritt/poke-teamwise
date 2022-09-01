@@ -1,13 +1,10 @@
 const router = require("express").Router();
-const games = require('../utils/poke-games');
 const { getPokemonDetails } = require('../utils/poke-helpers');
-const starterTeam = require('../utils/starter-team');
-const sequelize = require("../config/connection");
 const { Favorites, User, Team, Member } = require("../models");
 const withAuth = require("../utils/auth");
 
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
     Team.findAll({
         where: {
             user_id: req.session.user_id
@@ -39,7 +36,6 @@ router.get("/", async (req, res) => {
 
             //get first member to fill card
             const cardPokemon = membersDetails.member1;
-            console.log(cardPokemon)
             res.render('dashboard', { 
                 loggedIn: req.session.loggedIn,
                 hasTeams: true,

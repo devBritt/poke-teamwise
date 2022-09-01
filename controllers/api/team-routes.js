@@ -109,7 +109,7 @@ router.get('/by-user/:id', (req, res) => {
 });
 
 // POST new team
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     // expects { user_id: 1, team_name: 'team rocket' }
     Team.create({
         user_id: req.session.user_id,
@@ -124,7 +124,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT update team by id
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Team.update(req.body, {
         where: {
             id: req.params.id
@@ -146,7 +146,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE team by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Team.destroy({
         where: {
             id: req.params.id
