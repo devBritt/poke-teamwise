@@ -7,7 +7,7 @@ const { Favorites, User, Team, Member } = require("../models");
 const withAuth = require("../utils/auth");
 
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
     Team.findAll({
         where: {
             user_id: req.session.user_id
