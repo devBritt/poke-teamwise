@@ -22,7 +22,6 @@ async function signupFormHandler(event) {
       alert(response.statusText);
     }
   }
-  console.log("confirmed click");
 }
 
 document

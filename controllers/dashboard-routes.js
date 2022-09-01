@@ -36,7 +36,6 @@ router.get("/", withAuth, async (req, res) => {
 
             //get first member to fill card
             const cardPokemon = membersDetails.member1;
-            console.log(cardPokemon)
             res.render('dashboard', { 
                 loggedIn: req.session.loggedIn,
                 hasTeams: true,
