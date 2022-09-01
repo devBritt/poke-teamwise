@@ -7,47 +7,45 @@ const { Favorites, User, Team, Member } = require("../models");
 const withAuth = require("../utils/auth");
 
 
-router.use("/", async (req, res) => {
-    //TODO get list of users's teams from db
-    User.findOne ({
+router.get("/", async (req, res) => {
+    Team.findAll({
         where: {
-            id: req.session.user_id,
+            user_id: req.session.user_id
         },
+        order: [['created_at', 'DESC']],
+        attributes: ['id', 'team_name', 'game_id'],
         include: [
             {
-                model: Team,
-                attributes: ['id', 'team_name'],
-                include: {
-                    model: Member,
-                    attributes: ['id', 'team_id']
-                }
-            },
-        ],
+                model: Member,
+                attributes: ['team_id', 'pokemon_name'],
+            }
+        ]
     })
-    //TODO use first team from list of teams to fill in member tiles
-    
-    //get starter team member details 
-    const members = {};
+    .then( async (dbTeamData) => {
+        const teams = dbTeamData.map((team) => team.get({plain :true}))
+        
+        //get members list
+        const members = teams[0].members
+        
+        const membersDetails = {}
 
+        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
+        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
+        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
+        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
+        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
+        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
 
-    members.member1 = await getPokemonDetails(starterTeam[0], 30, 1);
-    members.member2 = await getPokemonDetails(starterTeam[1], 30, 2);
-    members.member3 = await getPokemonDetails(starterTeam[2], 30, 3);
-    members.member4 = await getPokemonDetails(starterTeam[3], 30, 4);
-    members.member5 = await getPokemonDetails(starterTeam[4], 30, 5);
-    members.member6 = await getPokemonDetails(starterTeam[5], 30, 6);
-
-    const memberDetails = members[0];
-
-    // console.log(members);
-
-    res.render('dashboard', { 
-        loggedIn: req.session.loggedIn,
-        games,
-        members,
-        memberDetails,
-        // teams
-    });
+        //get first member to fill card
+        const firstMember = members[0];
+        console.log(members)
+        res.render('dashboard', { 
+            loggedIn: req.session.loggedIn,
+            membersDetails,
+            teams,
+            firstMember
+        });
+    })
 });
 
 module.exports = router;
