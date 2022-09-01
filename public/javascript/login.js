@@ -21,7 +21,6 @@ async function loginFormHandler(event) {
             alert(response.statusText);
         }
     }
-    console.log("confirmed click");
 };
 
 document.querySelector("#login-form").addEventListener("submit", loginFormHandler);
