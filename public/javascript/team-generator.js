@@ -1,6 +1,5 @@
 // DOM elements for event listeners
 const memberTiles = Array.from(document.querySelectorAll('.member-tile'));
-const memberLocks = Array.from(document.querySelectorAll('.member-lock'));
 
 // event handlers
 // on generator form submit
@@ -17,7 +16,6 @@ async function formEventHandler(event) {
     const pokemonList = await getPokemonList(gameId, type, move);
     
     // get n random pokemon from list
-    // TODO: update 6 to be based on unlocked pokemon count
     const randomPicks = getRandomPokemon(pokemonList, 6);
     // update member tiles
     await getTeamDetails(randomPicks, gameId);
@@ -68,12 +66,6 @@ async function membersEventHandler(event) {
     updatePokemonCard(pokemonDetails);
     // use details to update evolution chain
     updateEvoChain(pokemonDetails.evolution_chain);
-}
-// on lock button click
-async function locksEventHandler(event) {
-    event.preventDefault();
-
-    // TODO: implement locking feature
 }
 
 // API calls
@@ -273,8 +265,12 @@ function updatePokemonCard(pokemon) {
     const typesContainer = document.querySelector('#pokemon-types-container');
     updatePokemonCardTypes(pokemon.types, typesContainer);
 
-    // update flavor text
-    document.querySelector('#flavor-text').innerHTML = pokemon.flavor_text;
+    // clear pokemon class container
+    document.querySelector('.pokemon-class-container').innerHTML = '';
+    // update legendary/mythical
+    if (pokemon.is_legendary || pokemon.is_mythical) {
+        updatePokemonClass(pokemon);
+    }
 
     // update stats
     document.querySelector('#hp').innerHTML = pokemon.stats.hp;
@@ -283,6 +279,21 @@ function updatePokemonCard(pokemon) {
     document.querySelector('#speed').innerHTML = pokemon.stats.speed;
     document.querySelector('#specAtt').innerHTML = pokemon.stats.specAtt;
     document.querySelector('#specDef').innerHTML = pokemon.stats.specDef;
+}
+// display Pokemon legendary/mythical status
+function updatePokemonClass(pokemon) {
+    const classContainer = document.querySelector('.pokemon-class-container');
+    const pEl = document.createElement('p');
+
+    if (pokemon.is_legendary) {
+        pEl.id = 'legendary';
+        pEl.innerHTML = 'Legendary';
+    } else if (pokemon.is_mythical) {
+        pEl.id = 'mythical';
+        pEl.innerHTML = 'Mythical';
+    }
+
+    classContainer.appendChild(pEl);
 }
 // display pokemon evolution chain
 function updateEvoChain(evolution_chain) {
@@ -343,8 +354,4 @@ document.querySelector('#save-team-form').addEventListener('submit', saveTeamEve
 // create event listener for each member tile
 for (let i = 0; i < memberTiles.length; i++) {
     memberTiles[i].children[0].addEventListener('click', membersEventHandler);
-}
-// create event listener for each member lock
-for (let j = 0; j < memberTiles.length; j++) {
-    memberLocks[j].children[0].addEventListener('click', locksEventHandler);
 }
