@@ -10,11 +10,8 @@
                 </section>
             </form>
         {{#each members as |member|}}
-        <article id="slot-{{member.memberNum}}" class="roster-slot grid-x align-middle">
-            <section class="member-lock cell small-2">
-                <span id="lock-{{member.memberNum}}" class="material-symbols-outlined lock-icon">lock_open</span>
-            </section>
-            <section class="member-tile cell auto">
+        <article id="slot-{{member.memberNum}}" class="roster-slot">
+            <section class="member-tile">
                 {{> member-tile member=member}}
             </section>
         </article>

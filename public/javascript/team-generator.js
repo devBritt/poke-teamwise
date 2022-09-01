@@ -1,6 +1,5 @@
 // DOM elements for event listeners
 const memberTiles = Array.from(document.querySelectorAll('.member-tile'));
-const memberLocks = Array.from(document.querySelectorAll('.member-lock'));
 
 // event handlers
 // on generator form submit
@@ -17,7 +16,6 @@ async function formEventHandler(event) {
     const pokemonList = await getPokemonList(gameId, type, move);
     
     // get n random pokemon from list
-    // TODO: update 6 to be based on unlocked pokemon count
     const randomPicks = getRandomPokemon(pokemonList, 6);
     // update member tiles
     await getTeamDetails(randomPicks, gameId);
@@ -68,12 +66,6 @@ async function membersEventHandler(event) {
     updatePokemonCard(pokemonDetails);
     // use details to update evolution chain
     updateEvoChain(pokemonDetails.evolution_chain);
-}
-// on lock button click
-async function locksEventHandler(event) {
-    event.preventDefault();
-
-    // TODO: implement locking feature
 }
 
 // API calls
@@ -362,8 +354,4 @@ document.querySelector('#save-team-form').addEventListener('submit', saveTeamEve
 // create event listener for each member tile
 for (let i = 0; i < memberTiles.length; i++) {
     memberTiles[i].children[0].addEventListener('click', membersEventHandler);
-}
-// create event listener for each member lock
-for (let j = 0; j < memberTiles.length; j++) {
-    memberLocks[j].children[0].addEventListener('click', locksEventHandler);
 }
