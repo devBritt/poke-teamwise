@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Team, Member, User } = require('../../models'); 
+const { Team, Member, User } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET members by team_id
 router.get('/by-team/:id', (req, res) => {
@@ -68,7 +69,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST new member
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // expects { team_id: 1, pokemon_name: 'goodra' }
     Member.create({
         team_id: req.body.teamId,
@@ -82,7 +83,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT update member by id
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Member.update(req.body, {
         where: {
             id: req.params.id
@@ -104,7 +105,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE member by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Member.destroy({
         where: {
             id: req.params.id

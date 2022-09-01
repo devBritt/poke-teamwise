@@ -2,7 +2,6 @@ async function updateTeamHandler(event) {
   event.preventDefault();
 
   const id = document.querySelector('#team-selector').selectedOptions[0].value
-  console.log(id)
 
   const response = await fetch(`/api/team/${id}`, {
       method: "put",

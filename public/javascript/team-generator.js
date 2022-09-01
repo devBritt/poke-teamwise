@@ -106,7 +106,6 @@ async function saveTeam(teamName, gameId) {
         }),
         headers: { 'Content-Type': 'application/json' }
     });
-    // console.log(await response.json());
     
     if (response.ok) {
         console.log(`${teamName} saved successfully`);
