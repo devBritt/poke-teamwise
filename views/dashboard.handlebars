@@ -1,20 +1,24 @@
 {{#if hasTeams}}
 <section id="teams-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
-        <form class="grid-x" id="team-form">
-                <section class="cell auto">
-                    <label id="team-title"> Team Name
-                        <select id="team-selector" onchange="switchTeam()">
-                            <option value="">Pick a Team</option>
-                            {{#each teams as |team|}}
-                            <option value="{{team.id}}">{{team.team_name}}</option>
-                            {{/each}}
-                        </select>
-                    </label>
-                    <button type="click" id="update-btn" class="cell auto small-2 button">Update</button>
-                    <button type="click" id="delete-btn" class="cell auto small-2 button">Delete</button>
-                </section>
+        <section class="grid-x">
+            <form class="grid-x" id="team-form">
+                <label id="team-title"> Team Name
+                    <select id="team-selector" onchange="switchTeam()">
+                        <option value="">Pick a Team</option>
+                        {{#each teams as |team|}}
+                        <option value="{{team.id}}">{{team.team_name}}</option>
+                        {{/each}}
+                    </select>
+                </label>
             </form>
+            <section class="cell grid-x grid-padding-x">
+                <button type="button" id="update-btn" class="cell auto button btn"><span class="material-symbols-outlined">edit</span></button>
+                <button type="button" id="save-team-name-btn" class="cell auto button btn"><span class="material-symbols-outlined">save</span></button>
+                <button type="button" id="delete-btn" class="cell auto button btn"><span class="material-symbols-outlined">delete</span></button>
+                {{!-- <button></button> --}}
+            </section>
+        </section>
         {{#each membersDetails as |member|}}
         <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
             <section class="member-tile cell auto">
