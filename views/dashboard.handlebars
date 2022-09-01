@@ -1,7 +1,6 @@
 <section id="teams-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
-        <div class="grid-container fluid">
-            <form class="grid-x" id="team-form">
+        <form class="grid-x" id="team-form">
                 <section class="cell auto">
                     <label id="team-title"> Team Name
                         <select id="team-selector">
@@ -15,35 +14,21 @@
                     <button type="click" id="delete-btn" class="cell auto small-2 button">Delete Team</button>
                 </section>
             </form>
-        </div>
-        <aside id="members-window">
-            {{#each membersDetails as |member|}}
-            <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
-                <section class="member-tile cell auto">
-                    {{> member-tile member=member}}
-                </section>
-            </article>
-            {{/each}}
-        </aside>
+        {{#each membersDetails as |member|}}
+        <article id="slot-{{member.memberNum}}" class="roster-slot grid-x">
+            <section class="member-tile cell auto">
+                {{> member-tile member=member}}
+            </section>
+        </article>
+        {{/each}}
     </aside>
-    <section class="cell auto" id="member-controls">
-        <section class="grid-container fluid" id="dashboard-center-control">
-            <form id="member-form" class="grid-x">
-                <label for="member-select" id="member-select">
-                    <select name="member-select" id="pokemon-selector">
-                        <option value="">Team Members</option>
-                        <option value="{{member.id}}">{{member.pokemon_name}}</option>
-                    </select>
-                </label>
-                    <button type="submit" id="details-btn" class="cell small-2 button">Get Pokémon Details!</button>
-            </form>
-        </section>
+    <section class="cell auto">
         <section id="pokemon-details" class="grid-container fluid">
             <div class="grid-x">
-                <section id="pokemon-details-container" class="cell medium-8">
+                <section id="pokemon-details-container" class="cell medium-10">
                     {{> pokemon-card}}
                 </section>
-                <section id="evolutions-container" class="cell medium-4">
+                <section id="evolutions-container" class="cell medium-2">
                     {{> evolution-chain}}
                 </section>
             </div>
@@ -52,4 +37,3 @@
 </section>
 
 <script src="/javascript/dashboard.js"></script>
-<script src="/javascript/generate-card.js"></script>

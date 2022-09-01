@@ -80,18 +80,23 @@ select {
     background-color: var(--primary-red-hex);
     padding-left: calc(var(--spacing)*2);
     padding-right: calc(var(--spacing)*2);
+    padding-top: var(--spacing);
+    padding-bottom: var(--spacing);
 }
 .nav-link {
     color: var(--white);
+    transition: color .25s ease-out,color .25s ease-out;
     text-decoration: none;
-    font-size: var(--xs-font);
+    font-size: var(--xxs-font);
+    margin-left: var(--spacing);
 }
 .nav-link:hover {
     color: var(--light-gray-hex);
 }
 #nav-title {
-    font-size: var(--s-font);
+    font-size: var(--xs-font);
     font-weight: 700;
+    margin: 0;
 }
 
 /* login/signup page styles */
@@ -140,7 +145,7 @@ select {
 #team-title  {
     color: var(--white);
     font-weight: 500;
-    font-size: var(--l-font);
+    font-size: var(--s-font);
     margin: 10px auto;
     text-align: center;
 }
@@ -148,36 +153,18 @@ select {
 #aside-title {
     color: var(--white);
     font-weight: 500;
-    font-size: var(--l-font);
+    font-size: var(--s-font);
     margin: 10px auto;
     text-align: center;
 }
 
 #team-selector {
     font-weight: var(--medium-weight);
-    font-size: var(--s-font);
+    font-size: var(--xxs-font);
 }
 
 #teams-page{
     height: 100%;
-}
-
-#member-form {
-    width: 100%;
-}
-
-#member-controls {
-    padding-top: var(--spacing);
-    padding-bottom: var(--spacing);
-    width: 20%;
-}
-
-#details-btn {
-    background-color: var(--primary-blue-hex);
-    padding-top: calc(var(--spacing)*1.2);
-    padding-bottom: calc(var(--spacing)*1.2);
-    margin-top: 5%;
-    border-radius: 5px 5px 5px 5px;
 }
 
 #delete-btn {
@@ -232,7 +219,6 @@ select {
 #generate-btn {
     margin-top: auto;
     margin-bottom: 0;
-    margin-left: var(--spacing);
 }
 
 
@@ -265,30 +251,31 @@ select {
 }
 .roster-dex-num {
     color: var(--primary-red-hex);
-    font-size: var(--s-font);
+    font-size: var(--xxs-font);
     font-weight: var(--medium-weight);
 }
 .member-num {
     color: var(--light-gray-hex);
-    font-size: var(--s-font);
+    font-size: var(--xxs-font);
 }
 .member-name {
-    font-size: var(--m-font);
+    font-size: var(--xs-font);
     font-weight: var(--bold-weight);
 }
 .type {
     color: var(--gray-hex);
-    font-size: var(--s-font);
+    font-size: var(--xxs-font);
 }
 
 /* single pokemon details section */
 #pokemon-details {
     margin-top: calc(var(--spacing) * 3);
+    margin-left: var(--spacing);
 }
 
 /* pokemon card styles */
 .pokemon-card {
-    width: 60%;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     padding: calc(var(--spacing) * 1.5);
@@ -301,7 +288,7 @@ select {
     margin-bottom: calc(var(--spacing) * 1.5);
 }
 .pokemon-name {
-    font-size: var(--m-font);
+    font-size: var(--xs-font);
     font-weight: var(--bold-weight);
     text-align: center;
 }
@@ -311,13 +298,13 @@ select {
     margin-right: 15%;
 }
 .pokemon-type {
-    font-size: var(--s-font);
+    font-size: var(--xxs-font);
     font-weight: var(--bold-weight);
     text-align: center;
 }
 #legendary,
 #mythical {
-    font-size: var(--m-font);
+    font-size: var(--xs-font);
     font-weight: var(--bold-weight);
     text-align: center;
 }
@@ -326,23 +313,24 @@ select {
 }
 .stat-name {
     margin-bottom: calc(var(--spacing) * 1.5);
-    font-size: var(--s-font);
+    font-size: var(--xxs-font);
     color: var(--gray-hex);
 }
 .stat {
-    font-size: var(--m-font);
+    font-size: var(--xs-font);
     font-weight: var(--bold-weight);
 }
 
 /* evolution chain styles */
 .evolution-container {
-    width: 25%;
+    width: 100;
 }
 .evo-art {
-    margin: 0 auto;
+    width: 75%;
+    margin: 0 12.5%;
 }
 .evo-arrow {
-    width: 25%;
+    width: 100%;
     font-size: 36px;
     text-align: center;
     color: var(--primary-yellow-hex);
@@ -352,21 +340,114 @@ select {
 
 /* MEDIA QUERIES */
 /* medium and up */
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 820px) {
+    /* font sizing */
+    #team-title  {
+        font-size: var(--m-font);
+    }
+    #aside-title {
+        font-size: var(--m-font);
+    }
+    #team-selector {
+        font-size: var(--xs-font);
+    }
+    .roster-dex-num {
+        font-size: var(--xs-font);
+    }
+    .member-num {
+        font-size: var(--xs-font);
+    }
+    .member-name {
+        font-size: var(--s-font);
+    }
+    .type {
+        font-size: var(--xs-font);
+    }
+    .pokemon-name {
+        font-size: var(--s-font);
+    }
+    .pokemon-type {
+        font-size: var(--xs-font);
+    }
+    #legendary,
+    #mythical {
+        font-size: var(--s-font);
+    }
+    .stat-name {
+        font-size: var(--xs-font);
+    }
+    .stat {
+        font-size: var(--s-font);
+    }
     .nav-link {
         font-size: var(--s-font);
+        margin-left: calc(var(--spacing) * 1.5);
     }
     #nav-title {
         font-size: var(--l-font);
     }
+    /* pokemon card width */
+    .pokemon-card {
+        width: 70%;
+    }
+    /* generate button */
+    #generate-btn {
+        margin-left: var(--spacing);
+    }
 }
 
 /* large and up */
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 1210px) {
+    /* font sizing */
+    #team-title  {
+        font-size: var(--l-font);
+    }
+    #aside-title {
+        font-size: var(--l-font);
+    }
+    #team-selector {
+        font-size: var(--s-font);
+    }
+    .roster-dex-num {
+        font-size: var(--s-font);
+    }
+    .member-num {
+        font-size: var(--s-font);
+    }
+    .member-name {
+        font-size: var(--m-font);
+    }
+    .type {
+        font-size: var(--s-font);
+    }
+    .pokemon-name {
+        font-size: var(--m-font);
+    }
+    .pokemon-type {
+        font-size: var(--s-font);
+    }
+    #legendary,
+    #mythical {
+        font-size: var(--m-font);
+    }
+    .stat-name {
+        font-size: var(--s-font);
+    }
+    .stat {
+        font-size: var(--m-font);
+    }
+    .evo-arrow {
+        font-size: 36px;
+    }
     .nav-link {
         font-size: var(--m-font);
+        margin-left: calc(var(--spacing) * 2);
     }
     #nav-title {
         font-size: var(--xl-font);
+    }
+    /* pokemon card */
+    .pokemon-card {
+        width: 60%;
     }
 }

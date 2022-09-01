@@ -179,31 +179,6 @@ function updateEvoChain(evolution_chain) {
     };
 }
 
-// //function to fill team members drop down
-// function getMembersList() {
-//     // get member elements
-//     const membersEl = Array.from(document.querySelectorAll('.member-name'))
-    
-//     //get member selector drop down
-//     const memberDropDown = document.querySelector('#pokemon-selector');
-    
-//     //fill member selector drop down with member names
-//     memberDropDown.innerHTML = "<option value=''>Team Members</option>"
-
-//     membersEl.forEach(element => {
-//         //create option element
-//         const optionEl = document.createElement('option');
-
-//         //update option inner HTML with member name
-//         optionEl.innerHTML = element.innerHTML
-//         optionEl.value = removeFormatting(element.innerHTML)
-        
-//         //push option to member dropdown :) 
-//         memberDropDown.appendChild(optionEl); 
-
-//     })
-// }
-
 // remove formatting from Pokemon names
 function removeFormatting(text) {
     return text.split(' ').join('-').toLowerCase();
