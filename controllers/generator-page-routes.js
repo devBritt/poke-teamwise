@@ -3,7 +3,7 @@ const games = require('../utils/poke-games');
 const { getPokemonDetails, getAllMoves, getAllTypes } = require('../utils/poke-helpers');
 const starterTeam = require('../utils/starter-team');
 
-router.use('/', async (req, res) => {
+router.get('/', async (req, res) => {
     // get starter team member details
     const members = {};
 

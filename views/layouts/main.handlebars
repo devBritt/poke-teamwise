@@ -18,14 +18,17 @@
 <body>
     <header>
         <div class="contain-to-grid sticky">
-            <nav class="top-bar  navbar" data-topbar role="navigation">
-                <a href="/dashboard" class="nav-link">Dashboard</a>
-                <a href="/generator"><h1 class="nav-link" id="nav-title">Poké TeamWise</h1></a>
-                {{#if loggedIn}}
-                <p id="logout" class="nav-link">Logout</p>
-                {{else}}
-                <a href="/login" class="nav-link">Login/Signup</a>
-                {{/if}}
+            <nav class="top-bar navbar align-justify" data-topbar role="navigation">
+                <a href="/homepage"><h1 class="nav-link" id="nav-title">Poké TeamWise</h1></a>
+                <section class="grid-x grid-padding-x align-bottom">
+                    <a href="/generator" class="nav-link">Generator</a>
+                    {{#if loggedIn}}
+                    <a href="/dashboard" class="nav-link">Dashboard</a>
+                    <a id="logout" class="nav-link">Logout</a>
+                    {{else}}
+                    <a href="/login" class="nav-link">Login/Signup</a>
+                    {{/if}}
+                </section>
             </nav>
         </div>
     </header>

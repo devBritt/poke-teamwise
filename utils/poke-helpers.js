@@ -150,9 +150,6 @@ async function getPokemonDetails(pokemon, gameId, memberNum) {
             pokemonDetails.evolution_chain = pokemon;
         }
 
-        // get flavor text
-        pokemonDetails.flavor_text = getFlavText(speciesRes.data.flavor_text_entries, Number.parseInt(gameId));
-
         // get pokemon legendary/mythical status
         pokemonDetails.is_legendary = speciesRes.data.is_legendary;
         pokemonDetails.is_mythical = speciesRes.data.is_mythical;
@@ -272,31 +269,6 @@ function getStats(stats) {
     };
 
     return statsArr;
-}
-
-// get a pokemon's flavor text from api response
-function getFlavText(flavTextData, gameId) {
-    let flavor_text = '';
-
-    // get game name
-    const game = gamesList.find(game => {
-        let found = false;
-        
-        game.dexId.map(dexId => {
-            if (dexId === gameId) {
-                found = true;
-            }
-        });
-        
-        return found;
-    });
-    
-    flavTextData.forEach(entry => {
-        if (entry.language.name == 'en' && entry.version.name == game.name.split(' ').join('-').toLowerCase()) {
-            flavor_text = entry.flavor_text;
-        }
-    });
-    return flavor_text;
 }
 
 // get a pokemon's pokedex number based on the chosen game

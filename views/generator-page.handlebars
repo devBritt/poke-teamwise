@@ -1,7 +1,7 @@
 <section id="generator-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
         <form id="save-team-form" class="grid-x align-bottom">
-                <section class="cell auto">
+                <section class="cell medium-auto">
                     <label for="team-name">Enter a Team Name</label>
                     <input type="text" name="team-name" id="team-name" required>
                 </section>
@@ -10,20 +10,17 @@
                 </section>
             </form>
         {{#each members as |member|}}
-        <article id="slot-{{member.memberNum}}" class="roster-slot grid-x align-middle">
-            <section class="member-lock cell small-2">
-                <span id="lock-{{member.memberNum}}" class="material-symbols-outlined lock-icon">lock_open</span>
-            </section>
-            <section class="member-tile cell auto">
+        <article id="slot-{{member.memberNum}}" class="roster-slot">
+            <section class="member-tile">
                 {{> member-tile member=member}}
             </section>
         </article>
         {{/each}}
     </aside>
-    <section id="generator-center" class="cell auto">
+    <section id="generator-center" class="cell medium-9">
         <section id="generator-controls" class="grid-container fluid align-bottom">
             <form id="generator-form" class="grid-x">
-                <section id="game-select-container" class="cell auto">
+                <section id="game-select-container" class="cell medium-auto">
                     <label for="game-select">Game
                         <select id="game-select" name="game-select" required>
                             <option value="" selected>Pick a Game</option>
@@ -33,7 +30,7 @@
                         </select>
                     </label>
                 </section>
-                <section id="type-select-container" class="cell auto">
+                <section id="type-select-container" class="cell medium-auto">
                     <label for="type-select">Types (Optional)
                         <select name="type-select" id="type-select">
                             <option value="" selected>Start typing to search</option>
@@ -43,7 +40,7 @@
                         </select>
                     </label>
                 </section>
-                <section id="move-select-container" class="cell auto">
+                <section id="move-select-container" class="cell medium-auto">
                     <label for="move-select">Moves (Optional)
                         <select name="move-select" id="move-select">
                             <option value="" selected>Start typing to search</option>
@@ -53,25 +50,16 @@
                         </select>
                     </label>
                 </section>
-                <button type="submit" id="generate-btn" class="btn cell small-1">Go!</button>
+                <button type="submit" id="generate-btn" class="btn cell medium-1">Go!</button>
             </form>
         </section>
         <section id="pokemon-details" class="grid-container fluid">
             <div class="grid-x">
-                <section id="pokemon-details-container" class="cell medium-7">
+                <section id="pokemon-details-container" class="cell medium-10">
                     {{> pokemon-card}}
                 </section>
-                <section id="evolutions-container" class="cell medium-5">
-                    {{#each cardPokemon.evolution_chain as |evolution|}}
-                    <div class="evolution-container">
-                        <img class="evo-art" src="{{evolution.art_url}}" alt="{{evolution.name}}">
-                        <p class="pokemon-name">{{capitalize evolution.name}}</p>
-                    </div>
-                    {{#if @last}}
-                    {{else}}
-                    <span class="material-symbols-outlined evo-arrow">arrow_downward</span>
-                    {{/if}}
-                    {{/each}}
+                <section id="evolutions-container" class="cell medium-2">
+                    {{> evolution-chain}}
                 </section>
             </div>
         </section>

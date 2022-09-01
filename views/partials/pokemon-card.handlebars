@@ -9,8 +9,13 @@
             <span class="pokemon-type cell auto">{{capitalize type}}</span>
             {{/each}}
         </section>
-        <section class="flavor-text-container">
-            <p id="flavor-text">{{cardPokemon.flavor_text}}</p>
+        <section class="pokemon-class-container">
+        {{#if cardPokemon.is_legendary}}
+            <p id="legendary">Legendary</p>
+        {{/if}}
+        {{#if cardPokemon.mythical}}
+            <p id="mythical">Mythical</p>
+        {{/if}}
         </section>
         <section class="stats-container grid-x align-center">
             <section class="grid-x cell">
