@@ -283,17 +283,21 @@ function updatePokemonCard(pokemon) {
 // display Pokemon legendary/mythical status
 function updatePokemonClass(pokemon) {
     const classContainer = document.querySelector('.pokemon-class-container');
+    const divEl = document.createElement('div');
     const pEl = document.createElement('p');
 
     if (pokemon.is_legendary) {
+        divEl.id = 'legendary-bg';
         pEl.id = 'legendary';
         pEl.innerHTML = 'Legendary';
     } else if (pokemon.is_mythical) {
+        divEl.id = 'legendary-bg';
         pEl.id = 'mythical';
         pEl.innerHTML = 'Mythical';
     }
 
-    classContainer.appendChild(pEl);
+    divEl.appendChild(pEl);
+    classContainer.appendChild(divEl);
 }
 // display pokemon evolution chain
 function updateEvoChain(evolution_chain) {

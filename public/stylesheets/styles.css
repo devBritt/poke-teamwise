@@ -321,6 +321,18 @@ select {
     font-weight: var(--bold-weight);
 }
 
+/* pokemon class type animation */
+#legendary,
+#mythical {
+    color: rgba(255, 255, 255, 0);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    animation: textclip 3s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
 /* evolution chain styles */
 .evolution-container {
     width: 100;
