@@ -177,7 +177,20 @@ select {
     background-color: var(--primary-blue-hex);
     padding-top: calc(var(--spacing)*1.2);
     padding-bottom: calc(var(--spacing)*1.2);
+    margin-top: 5%;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#delete-btn {
+    background-color: var(--primary-blue-hex);
+    padding-top: calc(var(--spacing)*1.2);
+    padding-bottom: calc(var(--spacing)*1.2);
     margin-top: auto;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#dashboard-center-control {
+    display: flex;
 }
 
 /* generator styles */

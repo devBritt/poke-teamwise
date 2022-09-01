@@ -1,0 +1,10 @@
+{{#each cardPokemon.evolution_chain as |evolution|}}
+<div class="evolution-container">
+    <img class="evo-art" src="{{evolution.art_url}}" alt="{{evolution.name}}">
+    <p class="pokemon-name">{{capitalize evolution.name}}</p>
+</div>
+{{#if @last}}
+{{else}}
+<span class="material-symbols-outlined evo-arrow">arrow_downward</span>
+{{/if}}
+{{/each}}
