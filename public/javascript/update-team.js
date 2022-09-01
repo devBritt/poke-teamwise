@@ -37,7 +37,7 @@ function createInputEl() {
     // get selected team name
     const currentName = document.querySelector('#team-selector').selectedOptions[0].innerHTML;
     const teamId = document.querySelector('#team-selector').selectedOptions[0].value
-    console.log(teamId);
+    
     // create input element
     const inputEl = document.createElement('input');
 
