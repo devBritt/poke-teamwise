@@ -3,7 +3,7 @@ async function updateTeamHandler(event) {
 
   const id = document.querySelector('#team-selector').selectedOptions[0].value
   console.log(id)
-  
+
   const response = await fetch(`/api/team/${id}`, {
       method: "put",
       body: JSON.stringify({
@@ -19,7 +19,6 @@ async function updateTeamHandler(event) {
     } else {
         alert(response.statusText);
     }
-    console.log('click')
 }
 
 document

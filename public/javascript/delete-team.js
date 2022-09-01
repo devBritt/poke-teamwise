@@ -4,7 +4,6 @@ async function deleteFormHandler(event) {
   // const selectEl = document.querySelector('#team-selector')
 
   const id = document.querySelector("#team-selector").selectedOptions[0].value;
-  console.log(id);
 
   const response = await fetch(`/api/team/${id}`, {
     method: "delete",
