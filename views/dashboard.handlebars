@@ -16,7 +16,6 @@
                 <button type="button" id="update-btn" class="cell auto button btn"><span class="material-symbols-outlined">edit</span></button>
                 <button type="button" id="save-team-name-btn" class="cell auto button btn"><span class="material-symbols-outlined">save</span></button>
                 <button type="button" id="delete-btn" class="cell auto button btn"><span class="material-symbols-outlined">delete</span></button>
-                {{!-- <button></button> --}}
             </section>
         </section>
         {{#each membersDetails as |member|}}
@@ -44,11 +43,15 @@
 <script src="/javascript/delete-team.js"></script>
 <script src="/javascript/update-team.js"></script>
 {{else}}
-<h2>
-    Woah! Looks like you're Mew to this!
-</h2>
-<p>Head to the generator to create and save some teams, first.</p>
-<a href="/generator" class="button btn">Time to Evolve!</a>
+<section id="no-teams-cta">
+        <section class="vertical-align-middle">
+            <h2 class="no-teams-title">
+                Woah! Looks like you're Mew to this!
+            </h2>
+            <p class="no-teams-subtitle">Head to the generator to create and save some teams, first.</p>
+            <section class="generator-btn-container"><a href="/generator" id="generator-btn" class="button btn">Let's Go!</a></section>
+        </section>
+    </section>
 {{/if}}
 
 <script src="/javascript/dashboard.js"></script>
