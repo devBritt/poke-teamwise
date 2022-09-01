@@ -1,8 +1,5 @@
 const router = require("express").Router();
-const games = require('../utils/poke-games');
 const { getPokemonDetails } = require('../utils/poke-helpers');
-const starterTeam = require('../utils/starter-team');
-const sequelize = require("../config/connection");
 const { Favorites, User, Team, Member } = require("../models");
 const withAuth = require("../utils/auth");
 
