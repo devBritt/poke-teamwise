@@ -329,6 +329,18 @@ select {
     font-weight: var(--bold-weight);
 }
 
+/* pokemon class type animation */
+#legendary,
+#mythical {
+    color: rgba(255, 255, 255, 0);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    animation: textclip 3s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
 /* evolution chain styles */
 .evolution-container {
     width: 100;
@@ -347,19 +359,38 @@ select {
 }
 
 /* homepage styles */
+#homepage-container {
+    height: 100%;
+}
 #hero {
-    display: flex;
-    justify-content: center;
-    padding-top: 100px;
+    background-image: url('../assets/pokemon-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50%;
+    padding: 0 calc(var(--spacing) * 3);
+}
+#hero-title,
+#hero-subtitle {
+    text-align: center;
+}
+#hero-title {
+    color: var(--white);
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
+}
+#hero-subtitle {
+    color: var(--white);
+    font-size: var(--s-font);
+    font-weight: var(--regular-weight);
+}
+.description-container {
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    height: 50%;
 }
 .description {
-    display: flex;
-    justify-content: left;
-    padding-top: 150px;
-    padding-left: 25px;
-    padding-right: 250px;
-    padding-bottom: 150px;
-    background-color: rgba(97, 94, 94, 0.107);
+    font-size: var(--xs-font);
+    font-weight: var(--light-weight);
+    text-align: center;
 }
 #battle {
     display: flex;
@@ -367,13 +398,29 @@ select {
     padding-bottom: 100px;
 }
 #legend {
-    padding-left: 100px;
+    margin: calc(var(--spacing) * 2) auto;
+    text-align: center;
 }
 
 /* MEDIA QUERIES */
 /* medium and up */
 @media screen and (min-width: 820px) {
     /* font sizing */
+    #hero-title {
+        font-size: var(--l-font);
+        text-align: right;
+    }
+    #hero-subtitle {
+        font-size: var(--m-font);
+        text-align: left;
+    }
+    .description {
+        font-size: var(--m-font);
+        text-align: left;
+    }
+    #homepage-ready-text {
+        font-size: var(--l-font);
+    }
     #team-title  {
         font-size: var(--m-font);
     }
@@ -426,11 +473,25 @@ select {
     #generate-btn {
         margin-left: var(--spacing);
     }
+    /* pokemon legend text */
+    #legend {
+        text-align: center;
+        margin: calc(var(--spacing) * 2) auto;
+    }
 }
 
 /* large and up */
 @media screen and (min-width: 1210px) {
     /* font sizing */
+    .description {
+        text-align: left;
+    }
+    #hero-title {
+        font-size: var(--xxl-font);
+    }
+    #hero-subtitle {
+        font-size: var(--xl-font);
+    }
     #team-title  {
         font-size: var(--l-font);
     }

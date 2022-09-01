@@ -1,3 +1,4 @@
+{{#if hasTeams}}
 <section id="teams-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
         <form class="grid-x" id="team-form">
@@ -35,6 +36,13 @@
         </section>
     </section>
 </section>
+{{else}}
+<h2>
+    Woah! Looks like you're Mew to this!
+</h2>
+<p>Head to the generator to create and save some teams, first.</p>
+<a href="/generator" class="button btn">Time to Evolve!</a>
+{{/if}}
 
 <script src="/javascript/dashboard.js"></script>
 <script src="/javascript/delete-team.js"></script>
