@@ -29,7 +29,8 @@ async function saveTeamEventHandler(event) {
     if (document.querySelector('#game-select').selectedOptions[0].value === '') {
         gameId = 30;
     } else {
-        gameId = document.querySelector('#game-select').selectedOptions[0].value;
+        gameId = document.querySelector('#game-select').selectedOptions[0].value.split(',')[0];
+        console.log(gameId);
     }
     // get team name
     const teamName = document.querySelector('#team-name').value;

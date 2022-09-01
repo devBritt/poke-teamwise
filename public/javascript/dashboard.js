@@ -8,7 +8,7 @@ async function membersEventHandler(event) {
     // get game id
     let gameId;
     if (document.querySelector('#team-selector').selectedOptions[0].value === '') {
-        gameId = document.querySelector('#team-selector').children[1].ariaValueMax;
+        gameId = document.querySelector('#team-selector').children[1].value;
     } else {
         gameId = document.querySelector('#team-selector').selectedOptions[0].value;
     }

@@ -23,8 +23,8 @@ router.get("/", async (req, res) => {
     })
     .then( async (dbTeamData) => {
         const teams = dbTeamData.map((team) => team.get({plain :true}))
-        
-        if (teams) {
+        console.log(teams);
+        if (teams.length > 0) {
             //get members list
             const members = teams[0].members
             
