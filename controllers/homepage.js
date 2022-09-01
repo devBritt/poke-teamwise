@@ -15,16 +15,16 @@ router.get("/login", (req, res) => {
     res.render('login');
 });
 
-router.post("/authenticate", (req, res, next) => {
-        if (req.body.username == "foo" && req.body.password == "bar") {
-            res.locals.username = req.body.username;
-            next();
-        } else res.sendStatus(401);
-    },
-    (req, res) => {
-        req.session.destroy((err) => {});
-        res.send("Thank you!");
-    }
-);
+// router.post("/authenticate", (req, res, next) => {
+//         if (req.body.username == "foo" && req.body.password == "bar") {
+//             res.locals.username = req.body.username;
+//             next();
+//         } else res.sendStatus(401);
+//     },
+//     (req, res) => {
+//         req.session.destroy((err) => {});
+//         res.send("Thank you!");
+//     }
+// );
     
 module.exports = router;

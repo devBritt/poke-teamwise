@@ -11,8 +11,8 @@
                             {{/each}}
                         </select>
                     </label>
-                    <button type="click" id="delete-btn" class="cell auto small-2 button">Go</button>
-                    <button type="click" id="delete-btn" class="cell auto small-2 button">Delete Team</button>
+                    <button type="click" id="update-btn" class="cell auto small-2 button">Go</button>
+                    <button type="click" id="delete-btn" class="cell auto small-2 button">Delete</button>
                 </section>
             </form>
         {{#each membersDetails as |member|}}
@@ -45,3 +45,5 @@
 {{/if}}
 
 <script src="/javascript/dashboard.js"></script>
+<script src="/javascript/delete-team.js"></script>
+<script src="/javascript/update-team.js"></script>

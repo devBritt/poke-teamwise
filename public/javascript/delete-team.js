@@ -1,9 +1,11 @@
 async function deleteFormHandler(event) {
   event.preventDefault();
 
-  const selectEl = doucment.querySelector('#team-selector')
+  // const selectEl = document.querySelector('#team-selector')
 
-  const response = await fetch(`/api/teams/${team_name}`, {
+  const id = document.querySelector("#team-selector").selectedOptions[0].value;
+
+  const response = await fetch(`/api/team/${id}`, {
     method: "delete",
     body: JSON.stringify({
       team_id: id,
@@ -21,5 +23,5 @@ async function deleteFormHandler(event) {
 }
 
 document
-  .querySelector("#team-form")
+  .querySelector("#delete-btn")
   .addEventListener("click", deleteFormHandler);
