@@ -288,6 +288,7 @@ function updatePokemonCard(pokemon) {
     document.querySelector('#specAtt').innerHTML = pokemon.stats.specAtt;
     document.querySelector('#specDef').innerHTML = pokemon.stats.specDef;
 }
+// display Pokemon legendary/mythical status
 function updatePokemonClass(pokemon) {
     const classContainer = document.querySelector('.pokemon-class-container');
     const pEl = document.createElement('p');
