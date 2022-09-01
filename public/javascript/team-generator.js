@@ -273,8 +273,12 @@ function updatePokemonCard(pokemon) {
     const typesContainer = document.querySelector('#pokemon-types-container');
     updatePokemonCardTypes(pokemon.types, typesContainer);
 
-    // update flavor text
-    document.querySelector('#flavor-text').innerHTML = pokemon.flavor_text;
+    // clear pokemon class container
+    document.querySelector('.pokemon-class-container').innerHTML = '';
+    // update legendary/mythical
+    if (pokemon.is_legendary || pokemon.is_mythical) {
+        updatePokemonClass(pokemon);
+    }
 
     // update stats
     document.querySelector('#hp').innerHTML = pokemon.stats.hp;
@@ -283,6 +287,20 @@ function updatePokemonCard(pokemon) {
     document.querySelector('#speed').innerHTML = pokemon.stats.speed;
     document.querySelector('#specAtt').innerHTML = pokemon.stats.specAtt;
     document.querySelector('#specDef').innerHTML = pokemon.stats.specDef;
+}
+function updatePokemonClass(pokemon) {
+    const classContainer = document.querySelector('.pokemon-class-container');
+    const pEl = document.createElement('p');
+
+    if (pokemon.is_legendary) {
+        pEl.id = 'legendary';
+        pEl.innerHTML = 'Legendary';
+    } else if (pokemon.is_mythical) {
+        pEl.id = 'mythical';
+        pEl.innerHTML = 'Mythical';
+    }
+
+    classContainer.appendChild(pEl);
 }
 // display pokemon evolution chain
 function updateEvoChain(evolution_chain) {

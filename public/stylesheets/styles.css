@@ -304,11 +304,6 @@ select {
 .flavor-text-container {
     margin-bottom: calc(var(--spacing) * 1.5);
 }
-#dex-num {
-    font-size: var(--m-font);
-    font-weight: var(--regular-weight);
-    color: var(--primary-yellow-hex);
-}
 .pokemon-name {
     font-size: var(--m-font);
     font-weight: var(--bold-weight);
@@ -320,12 +315,14 @@ select {
     margin-right: 15%;
 }
 .pokemon-type {
-    font-size: var(--m-font);
+    font-size: var(--s-font);
     font-weight: var(--bold-weight);
     text-align: center;
 }
-#flavor-text {
-    font-size: var(--s-font);
+#legendary,
+#mythical {
+    font-size: var(--m-font);
+    font-weight: var(--bold-weight);
     text-align: center;
 }
 .stats-container {
