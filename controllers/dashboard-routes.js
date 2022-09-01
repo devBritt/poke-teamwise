@@ -29,21 +29,21 @@ router.get("/", async (req, res) => {
         
         const membersDetails = {}
 
-        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
-        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
-        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
-        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
-        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
-        membersDetails.member1 = await getPokemonDetails(members[0], teams.game_id, 1);
+        membersDetails.member1 = await getPokemonDetails(members[0].pokemon_name, teams[0].game_id, 1);
+        membersDetails.member2 = await getPokemonDetails(members[1].pokemon_name, teams[0].game_id, 2);
+        membersDetails.member3 = await getPokemonDetails(members[2].pokemon_name, teams[0].game_id, 3);
+        membersDetails.member4 = await getPokemonDetails(members[3].pokemon_name, teams[0].game_id, 4);
+        membersDetails.member5 = await getPokemonDetails(members[4].pokemon_name, teams[0].game_id, 5);
+        membersDetails.member6 = await getPokemonDetails(members[5].pokemon_name, teams[0].game_id, 6);
 
         //get first member to fill card
-        const firstMember = members[0];
-        console.log(members)
+        const cardPokemon = membersDetails.member1;
+        console.log(cardPokemon)
         res.render('dashboard', { 
             loggedIn: req.session.loggedIn,
             membersDetails,
             teams,
-            firstMember
+            cardPokemon
         });
     })
 });

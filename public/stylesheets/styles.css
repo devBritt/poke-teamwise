@@ -189,6 +189,10 @@ select {
     border-radius: 5px 5px 5px 5px;
 }
 
+#dashboard-center-control {
+    display: flex;
+}
+
 /* generator styles */
 #generator-page {
     height: 100%;
