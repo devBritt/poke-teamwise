@@ -1,14 +1,14 @@
 <section id="generator-page" class="grid-x">
     <aside id="members-window" class="cell medium-3">
         <form id="save-team-form" class="grid-x align-bottom">
-                <section class="cell medium-auto">
-                    <label for="team-name">Enter a Team Name</label>
-                    <input type="text" name="team-name" id="team-name" required>
-                </section>
-                <section class="save-btn-container cell medium-2 grid-x align-right">
-                    <button id="save-team-btn" type="submit" class="btn"><span class="material-symbols-outlined">save</span></button>
-                </section>
-            </form>
+            <section class="cell medium-auto">
+                <label for="team-name">Enter a Team Name</label>
+                <input type="text" name="team-name" id="team-name" required>
+            </section>
+            <section class="save-btn-container cell medium-2 grid-x align-right">
+                <button id="save-team-btn" type="submit" class="btn"><span class="material-symbols-outlined">save</span></button>
+            </section>
+        </form>
         {{#each members as |member|}}
         <article id="slot-{{member.memberNum}}" class="roster-slot">
             <section class="member-tile">
