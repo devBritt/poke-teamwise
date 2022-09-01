@@ -29,15 +29,13 @@
     <section class="cell auto" id="member-controls">
         <section class="grid-container fluid" id="dashboard-center-control">
             <form id="member-form" class="grid-x">
-                <section class="cell-auto" id="member-form">
-                    <label for="member-select" id="member-select">
-                        <select name="member-select" id="pokemon-selector">
-                            <option value="">Team Members</option>
-                            <option value="{{member.id}}">{{member.pokemon_name}}</option>
-                        </select>
-                        <button type="submit" id="details-btn" class="cell small-2 button">Get Pokémon Details!</button>
-                    </label>
-                </section>
+                <label for="member-select" id="member-select">
+                    <select name="member-select" id="pokemon-selector">
+                        <option value="">Team Members</option>
+                        <option value="{{member.id}}">{{member.pokemon_name}}</option>
+                    </select>
+                </label>
+                    <button type="submit" id="details-btn" class="cell small-2 button">Get Pokémon Details!</button>
             </form>
         </section>
         <section id="pokemon-details" class="grid-container fluid">

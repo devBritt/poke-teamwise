@@ -167,7 +167,6 @@ select {
 }
 
 #member-controls {
-    display: flex;
     padding-top: var(--spacing);
     padding-bottom: var(--spacing);
     width: 20%;
